@@ -1,3 +1,4 @@
+import { SolicitarOrcamento } from "@/components/SolicitarOrcamento";
 import { Button } from "@/components/ui/button";
 
 export default function Home() {
@@ -15,9 +16,7 @@ export default function Home() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-          <Button className="px-6 py-3 bg-indigo-600 hover:bg-indigo-500 transition rounded-xl font-medium">
-            Solicitar Orçamento
-          </Button>
+          <SolicitarOrcamento />
 
           <Button className="px-6 py-3 border border-gray-700 hover:border-gray-500 transition rounded-xl font-medium">
             Conhecer Soluções
