@@ -4,7 +4,7 @@ import { Button } from "../ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
-import { sendOrcamento } from "@/utils/solicitarOrcamento";
+import { sendOrcamento } from "@/utils/email";
 import { toast } from "sonner";
 
 export function SolicitarOrcamento() {
