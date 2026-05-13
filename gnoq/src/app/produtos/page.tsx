@@ -3,332 +3,104 @@
 import { useState } from "react";
 import Link from "next/link";
 import {
-  Layers,
-  Globe,
-  Smartphone,
-  Zap,
-  BarChart3,
-  MessageSquare,
-  ArrowRight,
-  Plus,
-  Minus,
-  CheckCircle2,
-  Star,
+  Layers, Globe, Smartphone, Zap, BarChart3, MessageSquare,
+  ArrowRight, Plus, Minus, CheckCircle2, Star, MoveRight,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
-interface Service {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
-  deliverables: string[];
-  tag?: string;
-}
-
-interface Case {
-  sector: string;
-  title: string;
-  description: string;
-  results: string[];
-  tech: string[];
-}
-
-interface Plan {
-  name: string;
-  price: string;
-  priceNote: string;
-  description: string;
-  features: string[];
-  highlight?: boolean;
-  cta: string;
-}
-
-interface FaqItem {
-  q: string;
-  a: string;
-}
+interface Service { icon: React.ReactNode; title: string; description: string; deliverables: string[]; tag?: string; label: string; }
+interface Case { sector: string; title: string; description: string; results: string[]; tech: string[]; }
+interface Plan { name: string; price: string; priceNote: string; description: string; features: string[]; highlight?: boolean; cta: string; }
+interface FaqItem { q: string; a: string; }
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
 const SERVICES: Service[] = [
-  {
-    icon: <Layers className="h-7 w-7 text-[#4f46e5]" />,
-    title: "Sistemas sob medida / ERP",
-    tag: "Mais solicitado",
-    description:
-      "Construímos sistemas de gestão, ERPs e plataformas internas adaptados 100% ao seu processo — sem forçar seu negócio a caber em uma caixa pronta.",
-    deliverables: [
-      "Módulos de gestão (estoque, financeiro, RH, etc.)",
-      "Controle de acesso e permissões (RBAC)",
-      "Relatórios e dashboards integrados",
-      "Integrações com sistemas legados",
-      "Suporte e evolução contínua",
-    ],
-  },
-  {
-    icon: <Globe className="h-7 w-7 text-[#4f46e5]" />,
-    title: "Desenvolvimento Web",
-    description:
-      "Sites institucionais, landing pages de alta conversão e aplicações web completas com performance, SEO técnico e design que converte.",
-    deliverables: [
-      "Sites institucionais e portfólios",
-      "Landing pages otimizadas para conversão",
-      "Plataformas SaaS e portais",
-      "E-commerce e lojas digitais",
-      "Deploy e infraestrutura inclusos",
-    ],
-  },
-  {
-    icon: <Smartphone className="h-7 w-7 text-[#4f46e5]" />,
-    title: "Aplicativos Mobile",
-    description:
-      "Apps nativos e híbridos para iOS e Android, do conceito ao deploy nas lojas. UX pensada para retenção e usabilidade real.",
-    deliverables: [
-      "Apps iOS e Android (React Native)",
-      "Protótipo e validação de UX",
-      "Publicação nas lojas (App Store / Play Store)",
-      "Backend e APIs próprias",
-      "Analytics de uso integrado",
-    ],
-  },
-  {
-    icon: <Zap className="h-7 w-7 text-[#4f46e5]" />,
-    title: "Integrações & Automações",
-    description:
-      "Conectamos sistemas que não conversam, automatizamos processos manuais e eliminamos retrabalho com APIs, webhooks e RPA.",
-    deliverables: [
-      "Integrações entre ERPs, CRMs e plataformas",
-      "Automação de processos repetitivos (RPA)",
-      "Webhooks e event-driven architecture",
-      "ETL e sincronização de dados",
-      "Monitoramento e alertas de falha",
-    ],
-  },
-  {
-    icon: <BarChart3 className="h-7 w-7 text-[#4f46e5]" />,
-    title: "Power BI & Analytics",
-    description:
-      "Transformamos dados dispersos em dashboards claros, acionáveis e bonitos. Do modelo de dados ao relatório executivo.",
-    deliverables: [
-      "Dashboards interativos no Power BI",
-      "Modelagem de dados (Star Schema, DAX)",
-      "Conexão com banco de dados e APIs",
-      "Relatórios automáticos por e-mail",
-      "Treinamento da equipe incluso",
-    ],
-  },
-  {
-    icon: <MessageSquare className="h-7 w-7 text-[#4f46e5]" />,
-    title: "Consultoria Técnica",
-    description:
-      "Revisão de arquitetura, code review, escolha de stack e mentoria para times que querem escalar com qualidade.",
-    deliverables: [
-      "Auditoria de código e arquitetura",
-      "Definição de stack e roadmap técnico",
-      "Code review e pair programming",
-      "Documentação técnica",
-      "Mentoria para devs júnior / pleno",
-    ],
-  },
+  { icon: <Layers className="h-6 w-6 text-[#4f46e5]" />, label: "01", tag: "Mais solicitado", title: "Sistemas sob medida & ERP", description: "Construímos sistemas de gestão e ERPs adaptados 100% ao seu processo — sem forçar seu negócio a caber em uma caixa pronta.", deliverables: ["Módulos de gestão (estoque, financeiro, RH)", "Controle de acesso baseado em papéis (RBAC)", "Relatórios e dashboards integrados", "Integrações com sistemas legados", "Suporte e evolução contínua"] },
+  { icon: <Globe className="h-6 w-6 text-[#4f46e5]" />, label: "02", title: "Desenvolvimento Web", description: "Sites institucionais, landing pages de alta conversão e aplicações web completas — com performance, SEO técnico e design que converte.", deliverables: ["Sites institucionais e portfólios", "Landing pages otimizadas para conversão", "Plataformas SaaS e portais", "E-commerce e lojas digitais", "Deploy e infraestrutura inclusos"] },
+  { icon: <Smartphone className="h-6 w-6 text-[#4f46e5]" />, label: "03", title: "Aplicativos Mobile", description: "Apps nativos e híbridos para iOS e Android, do conceito ao deploy nas lojas. UX pensada para retenção e usabilidade real.", deliverables: ["Apps iOS e Android (React Native)", "Protótipo e validação de UX", "Publicação nas lojas (App Store / Play Store)", "Backend e APIs próprias", "Analytics de uso integrado"] },
+  { icon: <Zap className="h-6 w-6 text-[#4f46e5]" />, label: "04", title: "Integrações & Automações", description: "Conectamos sistemas que não conversam, automatizamos processos manuais e eliminamos retrabalho com APIs, webhooks e RPA.", deliverables: ["Integrações entre ERPs, CRMs e plataformas", "Automação de processos repetitivos (RPA)", "Webhooks e event-driven architecture", "ETL e sincronização de dados", "Monitoramento e alertas de falha"] },
+  { icon: <BarChart3 className="h-6 w-6 text-[#4f46e5]" />, label: "05", title: "Power BI & Analytics", description: "Transformamos dados dispersos em dashboards claros, acionáveis e bonitos. Do modelo de dados ao relatório executivo.", deliverables: ["Dashboards interativos no Power BI", "Modelagem de dados (Star Schema, DAX)", "Conexão com banco de dados e APIs", "Relatórios automáticos por e-mail", "Treinamento da equipe incluso"] },
+  { icon: <MessageSquare className="h-6 w-6 text-[#4f46e5]" />, label: "06", title: "Consultoria Técnica", description: "Revisão de arquitetura, code review, escolha de stack e mentoria para times que querem escalar com qualidade.", deliverables: ["Auditoria de código e arquitetura", "Definição de stack e roadmap técnico", "Code review e pair programming", "Documentação técnica", "Mentoria para devs júnior / pleno"] },
 ];
 
 const CASES: Case[] = [
-  {
-    sector: "Indústria",
-    title: "[PLACEHOLDER — Ex: Sistema de gestão de produção]",
-    description:
-      "[PLACEHOLDER — Descreva o problema do cliente, o que foi construído e o impacto gerado. Ex: 'Empresa do setor industrial precisava substituir planilhas manuais por um sistema centralizado...']",
-    results: [
-      "[PLACEHOLDER — Ex: 40% de redução no tempo de abertura de OS]",
-      "[PLACEHOLDER — Ex: Integração com 3 sistemas legados]",
-      "[PLACEHOLDER — Ex: 200 usuários simultâneos]",
-    ],
-    tech: ["Next.js", "PostgreSQL", "Supabase"],
-  },
-  {
-    sector: "Varejo",
-    title: "[PLACEHOLDER — Ex: Plataforma de e-commerce B2B]",
-    description:
-      "[PLACEHOLDER — Descreva o contexto, solução e resultado. Inclua números sempre que possível para dar credibilidade.]",
-    results: [
-      "[PLACEHOLDER — Ex: R$ 2M em pedidos no 1º mês]",
-      "[PLACEHOLDER — Ex: Integração com ERP próprio]",
-      "[PLACEHOLDER — Ex: App mobile para equipe de vendas]",
-    ],
-    tech: ["Angular", "TypeScript", "Node.js"],
-  },
-  {
-    sector: "Serviços",
-    title: "[PLACEHOLDER — Ex: Dashboard executivo em Power BI]",
-    description:
-      "[PLACEHOLDER — Contexto e solução. Ex: 'Empresa de serviços precisava consolidar dados de 5 fontes distintas em uma visão única para o board...']",
-    results: [
-      "[PLACEHOLDER — Ex: 5 fontes de dados consolidadas]",
-      "[PLACEHOLDER — Ex: Relatórios diários automatizados]",
-      "[PLACEHOLDER — Ex: Redução de 8h/semana em relatórios manuais]",
-    ],
-    tech: ["Power BI", "DAX", "SQL Server"],
-  },
+  { sector: "Indústria", title: "[PLACEHOLDER — Ex: Sistema de gestão de produção]", description: "[PLACEHOLDER — Descreva o problema do cliente, o que foi construído e o impacto gerado.]", results: ["[PLACEHOLDER — Ex: 40% de redução no tempo de abertura de OS]", "[PLACEHOLDER — Ex: Integração com 3 sistemas legados]", "[PLACEHOLDER — Ex: 200 usuários simultâneos]"], tech: ["Next.js", "PostgreSQL", "Supabase"] },
+  { sector: "Varejo", title: "[PLACEHOLDER — Ex: Plataforma de e-commerce B2B]", description: "[PLACEHOLDER — Descreva o contexto, solução e resultado com números sempre que possível.]", results: ["[PLACEHOLDER — Ex: R$ 2M em pedidos no 1º mês]", "[PLACEHOLDER — Ex: Integração com ERP próprio]", "[PLACEHOLDER — Ex: App mobile para equipe de vendas]"], tech: ["Angular", "TypeScript", "Node.js"] },
+  { sector: "Serviços", title: "[PLACEHOLDER — Ex: Dashboard executivo em Power BI]", description: "[PLACEHOLDER — Contexto e solução. Ex: dados de 5 fontes consolidados em uma visão única.]", results: ["[PLACEHOLDER — Ex: 5 fontes de dados consolidadas]", "[PLACEHOLDER — Ex: Relatórios diários automatizados]", "[PLACEHOLDER — Ex: 8h/semana economizadas em relatórios manuais]"], tech: ["Power BI", "DAX", "SQL Server"] },
 ];
 
 const PLANS: Plan[] = [
-  {
-    name: "Starter",
-    price: "[PLACEHOLDER]",
-    priceNote: "projeto único",
-    description: "Ideal para MVPs, landing pages e automações pontuais.",
-    features: [
-      "Escopo definido e fechado",
-      "Entrega em 2–6 semanas",
-      "1 rodada de revisões",
-      "Documentação básica",
-      "30 dias de suporte pós-entrega",
-    ],
-    cta: "Solicitar orçamento",
-  },
-  {
-    name: "Growth",
-    price: "[PLACEHOLDER]",
-    priceNote: "/ mês",
-    description: "Para empresas que precisam de time técnico dedicado e evolução contínua.",
-    highlight: true,
-    features: [
-      "Squad dedicado (dev + designer)",
-      "Sprints quinzenais com entrega",
-      "Revisões e ajustes ilimitados",
-      "Documentação completa",
-      "Suporte prioritário (SLA 24h)",
-      "Relatório mensal de evolução",
-    ],
-    cta: "Falar com especialista",
-  },
-  {
-    name: "Enterprise",
-    price: "Sob consulta",
-    priceNote: "personalizado",
-    description: "Projetos complexos, múltiplos sistemas e contratos de longo prazo.",
-    features: [
-      "Time multidisciplinar escalável",
-      "Arquitetura e planejamento técnico",
-      "SLA customizado",
-      "Gestão de projeto dedicada",
-      "Integrações e compliance inclusos",
-      "Treinamento da equipe interna",
-    ],
-    cta: "Entrar em contato",
-  },
+  { name: "Starter", price: "[PLACEHOLDER]", priceNote: "projeto único", description: "Ideal para MVPs, landing pages e automações pontuais.", features: ["Escopo definido e fechado", "Entrega em 2–6 semanas", "1 rodada de revisões", "Documentação básica", "30 dias de suporte pós-entrega"], cta: "Solicitar orçamento" },
+  { name: "Growth", price: "[PLACEHOLDER]", priceNote: "/ mês", description: "Para empresas que precisam de time dedicado e evolução contínua.", highlight: true, features: ["Squad dedicado (dev + designer)", "Sprints quinzenais com entrega", "Revisões e ajustes ilimitados", "Documentação completa", "Suporte prioritário — SLA 24h", "Relatório mensal de evolução"], cta: "Falar com especialista" },
+  { name: "Enterprise", price: "Sob consulta", priceNote: "personalizado", description: "Projetos complexos, múltiplos sistemas e contratos de longo prazo.", features: ["Time multidisciplinar escalável", "Arquitetura e planejamento técnico", "SLA customizado", "Gestão de projeto dedicada", "Integrações e compliance inclusos", "Treinamento da equipe interna"], cta: "Entrar em contato" },
 ];
 
 const FAQ: FaqItem[] = [
-  {
-    q: "Como funciona o processo desde o primeiro contato até a entrega?",
-    a: "Após o contato inicial, fazemos uma reunião de discovery (gratuita) para entender o problema e os objetivos. Em até 48h enviamos uma proposta com escopo, prazo e investimento. Com a aprovação, iniciamos o planejamento técnico e as sprints de desenvolvimento com reuniões quinzenais de acompanhamento.",
-  },
-  {
-    q: "Vocês trabalham com empresas de qual porte?",
-    a: "Atendemos desde startups em fase de validação até empresas de médio/grande porte. Nosso modelo é adaptável — o que importa é que o problema seja real e o comprometimento também.",
-  },
-  {
-    q: "O cliente precisa saber de tecnologia para contratar?",
-    a: "Não. Nosso trabalho inclui traduzir necessidades de negócio em soluções técnicas. Você foca no problema, a gente cuida da solução. Comunicação clara e sem jargão desnecessário faz parte do nosso processo.",
-  },
-  {
-    q: "Após a entrega, há suporte contínuo?",
-    a: "Sim. Todo projeto inclui um período de suporte pós-entrega. Para quem quer evolução contínua, oferecemos contratos de retainer (plano Growth ou Enterprise) com squad dedicado e entregas regulares.",
-  },
-  {
-    q: "Vocês assinam NDA e contrato formal?",
-    a: "Sempre. Todos os projetos são formalizados com contrato, NDA quando necessário e, para dados pessoais, DPA alinhado à LGPD. Segurança jurídica para os dois lados.",
-  },
-  {
-    q: "É possível começar com um projeto pequeno e expandir depois?",
-    a: "Sim, e é uma abordagem que recomendamos. Começar com um MVP ou módulo específico permite validar a parceria com menos risco antes de escalar para projetos maiores.",
-  },
+  { q: "Como funciona o processo desde o primeiro contato até a entrega?", a: "Após o contato inicial, fazemos uma reunião de discovery (gratuita) para entender o problema e os objetivos. Em até 48h enviamos uma proposta com escopo, prazo e investimento. Com a aprovação, iniciamos o planejamento técnico e as sprints com reuniões quinzenais de acompanhamento." },
+  { q: "Vocês trabalham com empresas de qual porte?", a: "Atendemos desde startups em fase de validação até empresas de médio/grande porte. Nosso modelo é adaptável — o que importa é que o problema seja real e o comprometimento também." },
+  { q: "O cliente precisa saber de tecnologia para contratar?", a: "Não. Nosso trabalho inclui traduzir necessidades de negócio em soluções técnicas. Você foca no problema, a gente cuida da solução. Comunicação clara e sem jargão desnecessário faz parte do nosso processo." },
+  { q: "Após a entrega, há suporte contínuo?", a: "Sim. Todo projeto inclui um período de suporte pós-entrega. Para quem quer evolução contínua, oferecemos contratos de retainer (plano Growth ou Enterprise) com squad dedicado e entregas regulares." },
+  { q: "Vocês assinam NDA e contrato formal?", a: "Sempre. Todos os projetos são formalizados com contrato, NDA quando necessário e, para dados pessoais, DPA alinhado à LGPD. Segurança jurídica para os dois lados." },
+  { q: "É possível começar com um projeto pequeno e expandir depois?", a: "Sim, e é uma abordagem que recomendamos. Começar com um MVP ou módulo específico permite validar a parceria com menos risco antes de escalar para projetos maiores." },
 ];
 
 // ─── Sub-components ──────────────────────────────────────────────────────────
 
 function ServiceCard({ service }: { service: Service }) {
   return (
-    <div className="group relative flex flex-col gap-5 rounded-2xl border border-[#2a2a3a] bg-[#0a0a12] p-8 hover:border-[#4f46e5]/50 transition-all duration-300 hover:shadow-lg hover:shadow-[#4f46e5]/5">
-      <div className="absolute top-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-[#4f46e5] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-      <div className="flex items-start justify-between gap-4">
-        <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-[#4f46e5]/10 border border-[#4f46e5]/20 shrink-0">
+    <div className="group relative flex flex-col border-b border-r border-gray-200 p-8 md:p-10 transition-all duration-300 hover:bg-[#4f46e5]/[0.03] cursor-default">
+      <span className="font-mono text-xs text-[#4f46e5]/50 mb-8 tracking-widest">{service.label}</span>
+      <div className="flex items-start justify-between mb-5">
+        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#4f46e5]/10 border border-[#4f46e5]/15 group-hover:bg-[#4f46e5]/15 transition-all duration-300">
           {service.icon}
         </div>
         {service.tag && (
-          <span className="shrink-0 rounded-full bg-[#4f46e5]/15 px-3 py-1 text-xs font-medium text-[#818cf8] border border-[#4f46e5]/20">
-            {service.tag}
-          </span>
+          <span className="rounded-full bg-[#4f46e5]/10 border border-[#4f46e5]/20 px-3 py-1 text-[10px] font-semibold tracking-wide text-[#4f46e5] uppercase">{service.tag}</span>
         )}
       </div>
-
-      <div>
-        <h3 className="text-lg font-semibold text-[#dceef7] mb-2">{service.title}</h3>
-        <p className="text-sm text-[#9ca3af] leading-relaxed">{service.description}</p>
-      </div>
-
-      <ul className="space-y-2 pt-1">
+      <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-[#4f46e5] transition-colors">{service.title}</h3>
+      <p className="text-sm text-gray-500 leading-relaxed mb-8">{service.description}</p>
+      <ul className="space-y-2.5 mt-auto">
         {service.deliverables.map((d) => (
-          <li key={d} className="flex items-start gap-2.5 text-sm text-[#6b7280]">
-            <CheckCircle2 className="h-4 w-4 text-[#4f46e5] shrink-0 mt-0.5" />
-            {d}
+          <li key={d} className="flex items-start gap-2.5 text-sm text-gray-400 group-hover:text-gray-500 transition-colors">
+            <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-[#4f46e5]/40 shrink-0" />{d}
           </li>
         ))}
       </ul>
-
-      <div className="mt-auto pt-4 border-t border-[#1e1e2e]">
-        <Button
-          variant="ghost"
-          className="w-full text-[#818cf8] hover:text-[#dceef7] hover:bg-[#1a1a2e] group/btn"
-          asChild
-        >
-          <Link href="/contato">
-            Solicitar proposta
-            <ArrowRight className="h-4 w-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
-          </Link>
-        </Button>
+      <div className="mt-8 pt-6 border-t border-gray-100">
+        <Link href="/contato" className="inline-flex items-center gap-2 text-sm text-[#4f46e5] hover:text-[#4338ca] transition-colors group/link font-medium">
+          Solicitar proposta
+          <MoveRight className="h-4 w-4 group-hover/link:translate-x-1 transition-transform" />
+        </Link>
       </div>
     </div>
   );
 }
 
-function CaseCard({ c }: { c: Case }) {
+function CaseCard({ c, i }: { c: Case; i: number }) {
   return (
-    <div className="rounded-2xl border border-[#2a2a3a] bg-[#0a0a12] p-8 flex flex-col gap-6">
+    <div className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-8 hover:border-[#4f46e5]/30 hover:shadow-lg hover:shadow-[#4f46e5]/8 transition-all duration-300 flex flex-col gap-6">
       <div className="flex items-center justify-between">
-        <span className="rounded-full border border-[#2a2a3a] px-3 py-1 text-xs text-[#6b7280] font-medium">
-          {c.sector}
-        </span>
-        <div className="flex gap-0.5">
-          {[...Array(5)].map((_, i) => (
-            <Star key={i} className="h-3.5 w-3.5 fill-[#4f46e5] text-[#4f46e5]" />
-          ))}
-        </div>
+        <span className="rounded-full border border-gray-200 bg-gray-50 px-3 py-1 text-xs text-gray-500 font-medium">{c.sector}</span>
+        <span className="font-mono text-xs text-gray-300">0{i + 1}</span>
       </div>
-
       <div>
-        <h3 className="text-lg font-semibold text-[#dceef7] mb-2">{c.title}</h3>
-        <p className="text-sm text-[#9ca3af] leading-relaxed">{c.description}</p>
+        <h3 className="text-base font-semibold text-gray-900 mb-2 leading-snug">{c.title}</h3>
+        <p className="text-sm text-gray-500 leading-relaxed">{c.description}</p>
       </div>
-
-      <div className="space-y-2">
+      <div className="space-y-2 flex-1">
         {c.results.map((r) => (
-          <div key={r} className="flex items-start gap-2.5 text-sm text-[#6b7280]">
-            <ArrowRight className="h-4 w-4 text-[#4f46e5] shrink-0 mt-0.5" />
-            {r}
+          <div key={r} className="flex items-start gap-3 text-sm text-gray-500">
+            <ArrowRight className="h-3.5 w-3.5 text-[#4f46e5] shrink-0 mt-0.5" />{r}
           </div>
         ))}
       </div>
-
-      <div className="flex flex-wrap gap-2 pt-2 border-t border-[#1e1e2e]">
+      <div className="flex flex-wrap gap-2 pt-4 border-t border-gray-100">
         {c.tech.map((t) => (
-          <span key={t} className="rounded-md bg-[#4f46e5]/10 px-2.5 py-1 text-xs font-mono text-[#818cf8]">
-            {t}
-          </span>
+          <span key={t} className="rounded-md bg-[#4f46e5]/8 px-2.5 py-1 text-[11px] font-mono text-[#4f46e5]">{t}</span>
         ))}
       </div>
     </div>
@@ -337,48 +109,32 @@ function CaseCard({ c }: { c: Case }) {
 
 function PlanCard({ plan }: { plan: Plan }) {
   return (
-    <div
-      className={`relative flex flex-col rounded-2xl border p-8 transition-all duration-300 ${
-        plan.highlight
-          ? "border-[#4f46e5] bg-[#0d0d1f] shadow-xl shadow-[#4f46e5]/10"
-          : "border-[#2a2a3a] bg-[#0a0a12]"
-      }`}
-    >
+    <div className={`relative flex flex-col rounded-2xl p-8 transition-all duration-300 ${plan.highlight ? "border border-[#4f46e5] bg-white shadow-2xl shadow-[#4f46e5]/12" : "border border-gray-200 bg-white hover:border-[#4f46e5]/30 hover:shadow-md"}`}>
       {plan.highlight && (
-        <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
-          <span className="rounded-full bg-[#4f46e5] px-4 py-1 text-xs font-semibold text-white shadow">
-            Mais escolhido
-          </span>
-        </div>
+        <>
+          <div className="absolute inset-x-0 top-0 h-1 bg-[#4f46e5] rounded-t-2xl" />
+          <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
+            <span className="rounded-full bg-[#4f46e5] px-4 py-1 text-[11px] font-semibold text-white tracking-wide uppercase shadow-lg shadow-[#4f46e5]/30">Mais escolhido</span>
+          </div>
+        </>
       )}
-
       <div className="mb-6">
-        <h3 className="text-xl font-bold text-[#dceef7] mb-1">{plan.name}</h3>
-        <p className="text-sm text-[#6b7280]">{plan.description}</p>
+        <p className="text-xs font-mono text-[#4f46e5] tracking-widest uppercase mb-2">{plan.name}</p>
+        <div className="flex items-baseline gap-2 mb-3">
+          <span className="text-4xl font-bold text-gray-900 tracking-tight">{plan.price}</span>
+          <span className="text-sm text-gray-400">{plan.priceNote}</span>
+        </div>
+        <p className="text-sm text-gray-500 leading-relaxed">{plan.description}</p>
       </div>
-
-      <div className="mb-6 pb-6 border-b border-[#1e1e2e]">
-        <span className="text-3xl font-bold text-[#dceef7]">{plan.price}</span>
-        <span className="text-sm text-[#6b7280] ml-2">{plan.priceNote}</span>
-      </div>
-
+      <div className="h-px bg-gray-100 mb-6" />
       <ul className="space-y-3 flex-1">
         {plan.features.map((f) => (
-          <li key={f} className="flex items-start gap-3 text-sm text-[#9ca3af]">
-            <CheckCircle2 className={`h-4 w-4 shrink-0 mt-0.5 ${plan.highlight ? "text-[#4f46e5]" : "text-[#374151]"}`} />
-            {f}
+          <li key={f} className="flex items-start gap-3 text-sm text-gray-600">
+            <CheckCircle2 className={`h-4 w-4 shrink-0 mt-0.5 ${plan.highlight ? "text-[#4f46e5]" : "text-gray-300"}`} />{f}
           </li>
         ))}
       </ul>
-
-      <Button
-        className={`mt-8 w-full py-6 text-base font-medium ${
-          plan.highlight
-            ? "bg-[#4f46e5] hover:bg-[#4338ca] text-white"
-            : "bg-[#1a1a2e] hover:bg-[#242440] text-[#dceef7] border border-[#2a2a3a]"
-        }`}
-        asChild
-      >
+      <Button className={`mt-8 w-full py-6 text-sm font-medium ${plan.highlight ? "bg-[#4f46e5] hover:bg-[#4338ca] text-white shadow-lg shadow-[#4f46e5]/20" : "bg-transparent hover:bg-gray-50 text-gray-700 hover:text-gray-900 border border-gray-200 hover:border-gray-300"}`} asChild>
         <Link href="/contato">{plan.cta}</Link>
       </Button>
     </div>
@@ -388,21 +144,14 @@ function PlanCard({ plan }: { plan: Plan }) {
 function FaqRow({ item }: { item: FaqItem }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="border-b border-[#1e1e2e] last:border-0">
-      <button
-        onClick={() => setOpen(!open)}
-        className="flex w-full items-center justify-between gap-4 py-5 text-left"
-      >
-        <span className="text-base font-medium text-[#dceef7]">{item.q}</span>
-        {open ? (
-          <Minus className="h-5 w-5 text-[#4f46e5] shrink-0" />
-        ) : (
-          <Plus className="h-5 w-5 text-[#6b7280] shrink-0" />
-        )}
+    <div className="border-b border-gray-100 last:border-0">
+      <button onClick={() => setOpen(!open)} className="flex w-full items-center justify-between gap-6 py-6 text-left group">
+        <span className={`text-sm font-medium transition-colors ${open ? "text-gray-900" : "text-gray-600 group-hover:text-gray-900"}`}>{item.q}</span>
+        <span className={`shrink-0 flex h-6 w-6 items-center justify-center rounded-full border transition-all duration-200 ${open ? "border-[#4f46e5] bg-[#4f46e5]/10 text-[#4f46e5]" : "border-gray-200 text-gray-400"}`}>
+          {open ? <Minus className="h-3 w-3" /> : <Plus className="h-3 w-3" />}
+        </span>
       </button>
-      {open && (
-        <p className="pb-5 text-sm text-[#9ca3af] leading-relaxed">{item.a}</p>
-      )}
+      {open && <p className="pb-6 text-sm text-gray-500 leading-relaxed max-w-2xl">{item.a}</p>}
     </div>
   );
 }
@@ -411,154 +160,153 @@ function FaqRow({ item }: { item: FaqItem }) {
 
 export default function ProdutosPage() {
   return (
-    <main className="min-h-screen bg-[#000000] text-[#dceef7]">
+    <main className="min-h-screen bg-gray-50 text-gray-900">
 
       {/* ── Hero ── */}
-      <section className="relative overflow-hidden border-b border-[#1e1e2e]">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#4f46e5]/8 via-transparent to-transparent" />
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage:
-              "linear-gradient(#4f46e5 1px, transparent 1px), linear-gradient(90deg, #4f46e5 1px, transparent 1px)",
-            backgroundSize: "60px 60px",
-          }}
-        />
+      <section className="relative overflow-hidden bg-white border-b border-gray-100">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#4f46e5]/4 via-transparent to-transparent" />
+        <div className="absolute inset-0 opacity-[0.035]" style={{ backgroundImage: "linear-gradient(#4f46e5 1px, transparent 1px), linear-gradient(90deg, #4f46e5 1px, transparent 1px)", backgroundSize: "60px 60px" }} />
         <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8 pt-20 pb-16 md:pt-28 md:pb-24">
-          <div className="flex items-center gap-3 mb-6">
-            <Link href="/" className="text-sm text-[#6b7280] hover:text-[#9ca3af] transition-colors">
-              Início
-            </Link>
-            <span className="text-[#2a2a3a]">/</span>
-            <span className="text-sm text-[#9ca3af]">Produtos & Serviços</span>
+          <div className="flex items-center gap-2 mb-6 text-xs text-gray-400">
+            <Link href="/" className="hover:text-gray-600 transition-colors">Início</Link>
+            <span>/</span>
+            <span className="text-gray-500">Produtos & Serviços</span>
           </div>
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-[#4f46e5]/30 bg-[#4f46e5]/10 px-4 py-1.5 text-sm text-[#818cf8] mb-6">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#4f46e5]/20 bg-[#4f46e5]/8 px-4 py-1.5 text-sm text-[#4f46e5] font-medium mb-6">
               <Layers className="h-3.5 w-3.5" />
               Do MVP ao produto de escala global
             </div>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-[1.08]">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-[1.08] text-gray-900">
               Soluções para cada
               <span className="block text-[#4f46e5]">etapa do seu negócio</span>
             </h1>
-            <p className="mt-6 text-lg text-[#9ca3af] leading-relaxed max-w-2xl">
+            <p className="mt-6 text-lg text-gray-500 leading-relaxed max-w-2xl">
               Desenvolvemos desde sistemas críticos de gestão até dashboards executivos.
               Tudo com arquitetura sólida, código limpo e entrega dentro do prazo.
             </p>
           </div>
+          {/* Stats */}
+          <div className="mt-12 flex flex-wrap gap-10 border-t border-gray-100 pt-10">
+            {[{ value: "6+", label: "áreas de atuação" }, { value: "48h", label: "para proposta inicial" }, { value: "100%", label: "projetos com contrato" }, { value: "LGPD", label: "compliance garantido" }].map((s) => (
+              <div key={s.label}>
+                <p className="text-2xl font-bold text-gray-900">{s.value}</p>
+                <p className="text-xs text-gray-400 uppercase tracking-widest mt-0.5">{s.label}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* ── Services ── */}
-      <section id="servicos" className="py-20 md:py-28">
+      {/* ── Services grid ── */}
+      <section id="servicos" className="border-t border-gray-100 bg-white">
         <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-4xl font-bold">O que entregamos</h2>
-            <p className="mt-3 text-[#9ca3af] max-w-xl mx-auto">
-              Cada serviço é executado por um time especializado, com processos definidos e comunicação transparente.
-            </p>
+          <div className="py-10 flex items-center justify-between border-b border-gray-100">
+            <div className="flex items-center gap-4">
+              <span className="h-px w-8 bg-[#4f46e5]" />
+              <span className="text-xs font-mono text-gray-400 tracking-widest uppercase">Serviços</span>
+            </div>
+            <span className="text-xs text-gray-300 font-mono">{SERVICES.length} áreas</span>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {SERVICES.map((s) => (
-              <ServiceCard key={s.title} service={s} />
-            ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 -mx-px">
+            {SERVICES.map((s) => <ServiceCard key={s.title} service={s} />)}
           </div>
         </div>
       </section>
 
       {/* ── Cases ── */}
-      <section id="cases" className="py-20 md:py-28 border-t border-[#1e1e2e] bg-gradient-to-b from-[#000000] to-[#04040d]">
+      <section id="cases" className="py-24 md:py-32 border-t border-gray-100">
         <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-4xl font-bold">Cases & Portfólio</h2>
-            <p className="mt-3 text-[#9ca3af] max-w-xl mx-auto">
-              Projetos reais, resultados mensuráveis. Os números falam por si.
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">
+            <div>
+              <div className="flex items-center gap-4 mb-4">
+                <span className="h-px w-8 bg-[#4f46e5]" />
+                <span className="text-xs font-mono text-gray-400 tracking-widest uppercase">Portfólio</span>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Cases & Resultados</h2>
+            </div>
+            <p className="text-sm text-gray-500 max-w-sm leading-relaxed">
+              Projetos reais com resultados mensuráveis. Detalhes omitidos por NDA — referências disponíveis sob solicitação.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {CASES.map((c) => (
-              <CaseCard key={c.title} c={c} />
-            ))}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {CASES.map((c, i) => <CaseCard key={c.title} c={c} i={i} />)}
           </div>
-          <p className="text-center mt-8 text-xs text-[#4b5563]">
-            Cases com detalhes omitidos por NDA. Referências disponíveis mediante solicitação.
-          </p>
         </div>
       </section>
 
       {/* ── Pricing ── */}
-      <section id="planos" className="py-20 md:py-28 border-t border-[#1e1e2e]">
+      <section id="planos" className="py-24 md:py-32 border-t border-gray-100 bg-white">
         <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-4xl font-bold">Planos & Investimento</h2>
-            <p className="mt-3 text-[#9ca3af] max-w-xl mx-auto">
-              Modelos flexíveis para projetos pontuais ou parcerias de longo prazo.
-              Valores finais definidos após entendimento do escopo.
+          <div className="text-center mb-16">
+            <div className="flex items-center justify-center gap-4 mb-4">
+              <span className="h-px w-8 bg-[#4f46e5]" />
+              <span className="text-xs font-mono text-gray-400 tracking-widest uppercase">Planos</span>
+              <span className="h-px w-8 bg-[#4f46e5]" />
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Modelos de engajamento</h2>
+            <p className="text-gray-500 max-w-xl mx-auto text-sm leading-relaxed">
+              Projetos pontuais ou parcerias contínuas — escolha o modelo que faz sentido para o momento do seu negócio.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
-            {PLANS.map((p) => (
-              <PlanCard key={p.name} plan={p} />
-            ))}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-start">
+            {PLANS.map((p) => <PlanCard key={p.name} plan={p} />)}
           </div>
-          <p className="text-center mt-8 text-sm text-[#4b5563]">
-            Todos os planos incluem contrato formal, NDA e conformidade com a LGPD.
-          </p>
+          <p className="text-center mt-8 text-xs text-gray-400">Todos os planos incluem contrato formal, NDA e conformidade com a LGPD.</p>
         </div>
       </section>
 
       {/* ── FAQ ── */}
-      <section id="faq" className="py-20 md:py-28 border-t border-[#1e1e2e] bg-gradient-to-b from-[#04040d] to-[#000000]">
-        <div className="mx-auto max-w-3xl px-5 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold">Perguntas frequentes</h2>
-            <p className="mt-3 text-[#9ca3af]">
-              Dúvidas que aparecem antes de todo projeto.
-            </p>
-          </div>
-          <div className="rounded-2xl border border-[#2a2a3a] bg-[#0a0a12] px-8 divide-y divide-[#1e1e2e]">
-            {FAQ.map((item) => (
-              <FaqRow key={item.q} item={item} />
-            ))}
+      <section id="faq" className="py-24 md:py-32 border-t border-gray-100">
+        <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-16">
+            <div>
+              <div className="flex items-center gap-4 mb-4">
+                <span className="h-px w-8 bg-[#4f46e5]" />
+                <span className="text-xs font-mono text-gray-400 tracking-widest uppercase">FAQ</span>
+              </div>
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">Perguntas<br />frequentes</h2>
+              <p className="text-sm text-gray-500 leading-relaxed">
+                Dúvidas que aparecem antes de todo projeto. Se a sua não estiver aqui,{" "}
+                <Link href="/contato" className="text-[#4f46e5] hover:underline underline-offset-4 font-medium">fale com a gente</Link>.
+              </p>
+            </div>
+            <div className="rounded-2xl border border-gray-200 bg-white px-8 divide-y divide-gray-100 shadow-sm">
+              {FAQ.map((item) => <FaqRow key={item.q} item={item} />)}
+            </div>
           </div>
         </div>
       </section>
 
       {/* ── CTA Final ── */}
-      <section className="py-20 md:py-28 border-t border-[#1e1e2e]">
-        <div className="mx-auto max-w-4xl px-5 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Pronto para começar?
-          </h2>
-          <p className="text-lg text-[#9ca3af] mb-10 max-w-xl mx-auto">
-            Mande uma mensagem. Em até 48h você recebe diagnóstico + proposta sem compromisso.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button
-              size="lg"
-              className="bg-[#4f46e5] hover:bg-[#4338ca] text-white px-10 py-6 text-base"
-              asChild
-            >
-              <Link href="/contato">
-                Solicitar proposta gratuita
-                <ArrowRight className="h-5 w-5 ml-2" />
-              </Link>
-            </Button>
-            <Button
-              size="lg"
-              variant="ghost"
-              className="text-[#9ca3af] hover:text-[#dceef7] hover:bg-[#1a1a2e] px-8 py-6 text-base border border-[#2a2a3a]"
-              asChild
-            >
-              <a
-                href="https://wa.me/55[PLACEHOLDER]?text=Olá! Quero saber mais sobre os serviços da GNOQ."
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <MessageSquare className="h-5 w-5 mr-2 text-[#25d366]" />
-                Falar pelo WhatsApp
-              </a>
-            </Button>
+      <section className="py-24 md:py-32 border-t border-gray-100 bg-white">
+        <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+          <div className="relative rounded-3xl border border-[#4f46e5]/20 bg-[#4f46e5]/5 overflow-hidden px-8 py-16 md:py-20 text-center">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[400px] w-[600px] rounded-full bg-[#4f46e5]/8 blur-[100px] pointer-events-none" />
+            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#4f46e5]/30 to-transparent" />
+            <div className="relative">
+              <p className="text-xs font-mono text-[#4f46e5] tracking-widest uppercase mb-4 font-semibold">Próximo passo</p>
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 max-w-2xl mx-auto leading-tight">
+                Pronto para construir algo que dure?
+              </h2>
+              <p className="text-gray-500 mb-10 max-w-lg mx-auto text-sm leading-relaxed">
+                Mande uma mensagem. Em até 48h você recebe diagnóstico inicial e proposta sem compromisso.
+              </p>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <Button size="lg" className="bg-[#4f46e5] hover:bg-[#4338ca] text-white px-10 py-6 text-sm font-medium shadow-xl shadow-[#4f46e5]/20" asChild>
+                  <Link href="/contato">
+                    Solicitar proposta gratuita
+                    <ArrowRight className="h-4 w-4 ml-2" />
+                  </Link>
+                </Button>
+                <Button size="lg" variant="ghost" className="text-gray-600 hover:text-gray-900 hover:bg-white px-8 py-6 text-sm border border-gray-200 hover:border-gray-300 hover:shadow-sm" asChild>
+                  <a href="https://wa.me/55[PLACEHOLDER]?text=Olá! Quero saber mais sobre os serviços da GNOQ." target="_blank" rel="noopener noreferrer">
+                    <MessageSquare className="h-4 w-4 mr-2 text-[#25d366]" />
+                    WhatsApp
+                  </a>
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </section>

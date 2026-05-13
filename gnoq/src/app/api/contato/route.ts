@@ -12,8 +12,8 @@ export async function POST(req: NextRequest) {
     }
 
     await resend.emails.send({
-      from: "GNOQ Contato <contato@gnoq.com.br>",   // ← troque pelo domínio verificado no Resend
-      to: ["contato@gnoq.com.br"],                    // ← e-mail que vai receber
+      from: "GNOQ Contato <desenvolvimento@gnoq.com.br>",   // ← troque pelo domínio verificado no Resend
+      to: ["desenvolvimento@gnoq.com.br"],                    // ← e-mail que vai receber
       replyTo: email,
       subject: `[GNOQ] Novo contato — ${name}`,
       html: `
