@@ -14,9 +14,9 @@ const SERVICE_TYPES = ["Desenvolvimento Web / Aplicação", "Sistema sob medida 
 const BUDGETS = ["Ainda não sei", "Até R$ 5.000", "R$ 5.000 – R$ 15.000", "R$ 15.000 – R$ 50.000", "Acima de R$ 50.000"];
 
 const CONTACT_INFO = [
-  { icon: <Mail className="h-5 w-5 text-[#4f46e5]" />, label: "E-mail", value: "desenvolvimento@gnoq.com.br", href: "mailto:desenvolvimento@gnoq.com.br" },
-  { icon: <Phone className="h-5 w-5 text-[#4f46e5]" />, label: "Telefone", value: "(31) 99452-5631", href: "tel:31994525631" },
-  { icon: <MapPin className="h-5 w-5 text-[#4f46e5]" />, label: "Localização", value: "Contagem - Minas Gerais", href: undefined },
+  { icon: <Mail className="h-5 w-5 text-[#0F4C81]" />, label: "E-mail", value: "desenvolvimento@gnoq.com.br", href: "mailto:desenvolvimento@gnoq.com.br" },
+  { icon: <Phone className="h-5 w-5 text-[#0F4C81]" />, label: "Telefone", value: "(31) 99452-5631", href: "tel:31994525631" },
+  { icon: <MapPin className="h-5 w-5 text-[#0F4C81]" />, label: "Localização", value: "Contagem - Minas Gerais", href: undefined },
 ];
 
 const SOCIALS = [
@@ -30,14 +30,14 @@ function Field({ label, required, children }: { label: string; required?: boolea
   return (
     <div className="flex flex-col gap-2">
       <label className="text-sm font-medium text-gray-600">
-        {label}{required && <span className="text-[#4f46e5] ml-1">*</span>}
+        {label}{required && <span className="text-[#0F4C81] ml-1">*</span>}
       </label>
       {children}
     </div>
   );
 }
 
-const inputClass = "w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-gray-900 text-sm placeholder:text-gray-400 focus:outline-none focus:border-[#4f46e5] focus:ring-2 focus:ring-[#4f46e5]/15 transition-colors duration-200 shadow-sm";
+const inputClass = "w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-gray-900 text-sm placeholder:text-gray-400 focus:outline-none focus:border-[#0F4C81] focus:ring-2 focus:ring-[#0F4C81]/15 transition-colors duration-200 shadow-sm";
 
 export default function ContatoPage() {
   const [form, setForm] = useState<FormData>({ name: "", email: "", phone: "", serviceType: "", budget: "", message: "" });
@@ -67,8 +67,8 @@ export default function ContatoPage() {
 
       {/* ── Hero ── */}
       <section className="relative overflow-hidden bg-white border-b border-gray-100">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#4f46e5]/4 via-transparent to-transparent" />
-        <div className="absolute inset-0 opacity-[0.035]" style={{ backgroundImage: "linear-gradient(#4f46e5 1px, transparent 1px), linear-gradient(90deg, #4f46e5 1px, transparent 1px)", backgroundSize: "60px 60px" }} />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0F4C81]/4 via-transparent to-transparent" />
+        <div className="absolute inset-0 opacity-[0.035]" style={{ backgroundImage: "linear-gradient(#0F4C81 1px, transparent 1px), linear-gradient(90deg, #0F4C81 1px, transparent 1px)", backgroundSize: "60px 60px" }} />
         <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8 pt-20 pb-16 md:pt-28 md:pb-20">
           <div className="flex items-center gap-2 mb-6 text-xs text-gray-400">
             <Link href="/" className="hover:text-gray-600 transition-colors">Início</Link>
@@ -76,12 +76,12 @@ export default function ContatoPage() {
             <span className="text-gray-500">Contato</span>
           </div>
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-[#4f46e5]/20 bg-[#4f46e5]/8 px-4 py-1.5 text-sm text-[#4f46e5] font-medium mb-6">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#0F4C81]/20 bg-[#0F4C81]/8 px-4 py-1.5 text-sm text-[#0F4C81] font-medium mb-6">
               <Send className="h-3.5 w-3.5" />Resposta em até 48h
             </div>
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-[1.08] text-gray-900">
               Vamos conversar<br />
-              <span className="text-[#4f46e5]">sobre seu projeto</span>
+              <span className="text-[#0F4C81]">sobre seu projeto</span>
             </h1>
             <p className="mt-6 text-lg text-gray-500 leading-relaxed max-w-xl">
               Preencha o formulário ou use um dos canais abaixo. Sem compromisso —
@@ -100,14 +100,14 @@ export default function ContatoPage() {
             <div className="rounded-2xl border border-gray-200 bg-white p-8 md:p-10 shadow-sm">
               {state === "success" ? (
                 <div className="flex flex-col items-center justify-center gap-5 py-16 text-center">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#4f46e5]/10 border border-[#4f46e5]/20">
-                    <CheckCircle2 className="h-8 w-8 text-[#4f46e5]" />
+                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#0F4C81]/10 border border-[#0F4C81]/20">
+                    <CheckCircle2 className="h-8 w-8 text-[#0F4C81]" />
                   </div>
                   <div>
                     <h2 className="text-2xl font-bold text-gray-900 mb-2">Mensagem enviada!</h2>
                     <p className="text-gray-500">Recebemos seu contato. Retornaremos em até 48h úteis.</p>
                   </div>
-                  <button onClick={() => setState("idle")} className="mt-2 text-sm text-[#4f46e5] hover:underline underline-offset-4 font-medium">
+                  <button onClick={() => setState("idle")} className="mt-2 text-sm text-[#0F4C81] hover:underline underline-offset-4 font-medium">
                     Enviar outra mensagem
                   </button>
                 </div>
@@ -144,8 +144,8 @@ export default function ContatoPage() {
                           onClick={() => setForm((prev) => ({ ...prev, budget: b }))}
                           className={`rounded-full px-4 py-1.5 text-sm border transition-colors duration-150 ${
                             form.budget === b
-                              ? "border-[#4f46e5] bg-[#4f46e5]/10 text-[#4f46e5] font-medium"
-                              : "border-gray-200 text-gray-500 bg-white hover:border-[#4f46e5]/40 hover:text-[#4f46e5]"
+                              ? "border-[#0F4C81] bg-[#0F4C81]/10 text-[#0F4C81] font-medium"
+                              : "border-gray-200 text-gray-500 bg-white hover:border-[#0F4C81]/40 hover:text-[#0F4C81]"
                           }`}
                         >{b}</button>
                       ))}
@@ -167,7 +167,7 @@ export default function ContatoPage() {
                   )}
 
                   <Button type="submit" disabled={state === "loading"}
-                    className="w-full bg-[#4f46e5] hover:bg-[#4338ca] text-white py-6 text-base font-medium disabled:opacity-60 disabled:cursor-not-allowed shadow-lg shadow-[#4f46e5]/20">
+                    className="w-full bg-[#00719C] hover:bg-[#005f85] text-white py-6 text-base font-medium disabled:opacity-60 disabled:cursor-not-allowed shadow-lg shadow-[#0F4C81]/20">
                     {state === "loading" ? (
                       <span className="flex items-center gap-2">
                         <span className="h-4 w-4 rounded-full border-2 border-white/30 border-t-white animate-spin" />Enviando...
@@ -179,7 +179,7 @@ export default function ContatoPage() {
 
                   <p className="text-center text-xs text-gray-400">
                     Ao enviar, você concorda com nossa{" "}
-                    <Link href="/privacidade" className="text-[#4f46e5] hover:underline font-medium">Política de Privacidade</Link>.
+                    <Link href="/privacidade" className="text-[#0F4C81] hover:underline font-medium">Política de Privacidade</Link>.
                   </p>
                 </form>
               )}
@@ -193,11 +193,11 @@ export default function ContatoPage() {
                 <h3 className="text-base font-semibold text-gray-900">Informações de contato</h3>
                 {CONTACT_INFO.map(({ icon, label, value, href }) => (
                   <div key={label} className="flex items-start gap-4">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#4f46e5]/10 border border-[#4f46e5]/15">{icon}</div>
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#0F4C81]/10 border border-[#0F4C81]/15">{icon}</div>
                     <div>
                       <p className="text-xs text-gray-400 mb-0.5">{label}</p>
                       {href
-                        ? <a href={href} className="text-sm text-gray-700 hover:text-[#4f46e5] transition-colors font-medium">{value}</a>
+                        ? <a href={href} className="text-sm text-gray-700 hover:text-[#0F4C81] transition-colors font-medium">{value}</a>
                         : <p className="text-sm text-gray-700 font-medium">{value}</p>
                       }
                     </div>
@@ -226,7 +226,7 @@ export default function ContatoPage() {
                 <div className="grid grid-cols-2 gap-3">
                   {SOCIALS.map(({ icon, label, href }) => (
                     <a key={label} href={href} target="_blank" rel="noopener noreferrer"
-                      className="flex items-center gap-3 rounded-xl border border-gray-200 px-4 py-3 text-sm text-gray-500 hover:border-[#4f46e5]/30 hover:text-[#4f46e5] hover:bg-[#4f46e5]/5 transition-all duration-200">
+                      className="flex items-center gap-3 rounded-xl border border-gray-200 px-4 py-3 text-sm text-gray-500 hover:border-[#0F4C81]/30 hover:text-[#0F4C81] hover:bg-[#0F4C81]/5 transition-all duration-200">
                       {icon}{label}
                     </a>
                   ))}

@@ -27,7 +27,7 @@ export function Header() {
 
           {/* Logo — troque por /gnoq-light.png quando tiver a versão para fundo claro */}
           <Link href="/" className="flex items-center gap-2.5 shrink-0">
-            <img src="/gnoq.png" alt="GNOQ" className="h-8 sm:h-10 w-auto rounded-lg" />
+            <img src="/gnoq.png" alt="GNOQ" className="h-40 sm:h-40 w-auto rounded-lg" />
           </Link>
 
           {/* Desktop nav */}
@@ -37,7 +37,7 @@ export function Header() {
                 key={href}
                 variant="ghost"
                 className={isActive(href)
-                  ? "text-[#4f46e5] bg-[#4f46e5]/8 hover:bg-[#4f46e5]/10 hover:text-[#4f46e5] font-medium"
+                  ? "text-[#0F4C81] bg-[#0F4C81]/8 hover:bg-[#0F4C81]/10 hover:text-[#0F4C81] font-medium"
                   : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
                 }
                 asChild
@@ -67,8 +67,8 @@ export function Header() {
                     <Link key={href} href={href}
                       className={`rounded-lg px-4 py-3 text-xl font-medium transition-colors ${
                         isActive(href)
-                          ? "text-[#4f46e5] bg-[#4f46e5]/8"
-                          : "text-gray-700 hover:text-[#4f46e5] hover:bg-[#4f46e5]/5"
+                          ? "text-[#0F4C81] bg-[#0F4C81]/8"
+                          : "text-gray-700 hover:text-[#0F4C81] hover:bg-[#0F4C81]/5"
                       }`}
                     >{label}</Link>
                   ))}

@@ -10,8 +10,8 @@ import { SolicitarOrcamento } from "@/components/SolicitarOrcamento";
 
 function FeatureCard({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) {
   return (
-    <div className="group flex flex-col gap-4 rounded-2xl border border-gray-200 bg-white p-8 hover:border-[#4f46e5]/40 hover:shadow-lg hover:shadow-[#4f46e5]/8 transition-all duration-300">
-      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#4f46e5]/10 border border-[#4f46e5]/15 group-hover:bg-[#4f46e5]/15 transition-all duration-300">
+    <div className="group flex flex-col gap-4 rounded-2xl border border-gray-200 bg-white p-8 hover:border-[#0F4C81]/40 hover:shadow-lg hover:shadow-[#0F4C81]/8 transition-all duration-300">
+      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#0F4C81]/10 border border-[#0F4C81]/15 group-hover:bg-[#0F4C81]/15 transition-all duration-300">
         {icon}
       </div>
       <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
@@ -22,8 +22,8 @@ function FeatureCard({ icon, title, description }: { icon: React.ReactNode; titl
 
 function ServiceItem({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) {
   return (
-    <div className="group flex gap-5 p-6 rounded-xl border border-gray-200 bg-white hover:border-[#4f46e5]/30 hover:shadow-md transition-all duration-200">
-      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#4f46e5]/10 border border-[#4f46e5]/15 text-[#4f46e5]">
+    <div className="group flex gap-5 p-6 rounded-xl border border-gray-200 bg-white hover:border-[#0F4C81]/30 hover:shadow-md transition-all duration-200">
+      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#0F4C81]/10 border border-[#0F4C81]/15 text-[#0F4C81]">
         {icon}
       </div>
       <div>
@@ -37,7 +37,7 @@ function ServiceItem({ icon, title, description }: { icon: React.ReactNode; titl
 function TechBadge({ icon, label }: { icon: React.ReactNode; label: string }) {
   return (
     <div className="group flex flex-col items-center gap-3 text-center">
-      <div className="flex h-14 w-14 items-center justify-center rounded-xl border border-gray-200 bg-white group-hover:border-[#4f46e5]/40 group-hover:bg-[#4f46e5]/5 transition-all duration-300 shadow-sm">
+      <div className="flex h-14 w-14 items-center justify-center rounded-xl border border-gray-200 bg-white group-hover:border-[#0F4C81]/40 group-hover:bg-[#0F4C81]/5 transition-all duration-300 shadow-sm">
         {icon}
       </div>
       <span className="text-sm font-medium text-gray-500 group-hover:text-gray-700 transition-colors">{label}</span>
@@ -51,25 +51,25 @@ export default function Home() {
 
       {/* ── Hero ── */}
       <section className="relative overflow-hidden bg-white">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 h-[600px] w-[900px] rounded-full bg-[#4f46e5]/6 blur-[140px] pointer-events-none" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 h-[600px] w-[900px] rounded-full bg-[#0F4C81]/6 blur-[140px] pointer-events-none" />
         <div
           className="absolute inset-0 opacity-[0.035]"
           style={{
-            backgroundImage: "linear-gradient(#4f46e5 1px, transparent 1px), linear-gradient(90deg, #4f46e5 1px, transparent 1px)",
+            backgroundImage: "linear-gradient(#0F4C81 1px, transparent 1px), linear-gradient(90deg, #0F4C81 1px, transparent 1px)",
             backgroundSize: "72px 72px",
           }}
         />
         <div className="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-t from-white to-transparent" />
 
         <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8 pt-24 pb-32 md:pt-36 md:pb-44 text-center">
-          <div className="inline-flex items-center gap-2.5 rounded-full border border-[#4f46e5]/25 bg-[#4f46e5]/8 px-4 py-2 text-xs text-[#4f46e5] mb-8 tracking-wide font-medium">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#4f46e5] animate-pulse" />
+          <div className="inline-flex items-center gap-2.5 rounded-full border border-[#0F4C81]/25 bg-[#0F4C81]/8 px-4 py-2 text-xs text-[#0F4C81] mb-8 tracking-wide font-medium">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#0F4C81] animate-pulse" />
             Engenharia digital de alto impacto
           </div>
 
           <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.04] max-w-5xl mx-auto text-gray-900">
             Engenharia digital
-            <span className="block text-[#4f46e5] mt-2">para quem pensa à frente</span>
+            <span className="block text-[#0F4C81] mt-2">para quem pensa à frente</span>
           </h1>
 
           <p className="mt-8 text-lg md:text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed">
@@ -113,9 +113,9 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <div className="flex items-center justify-center gap-4 mb-4">
-              <span className="h-px w-8 bg-[#4f46e5]" />
+              <span className="h-px w-8 bg-[#0F4C81]" />
               <span className="text-xs font-mono text-gray-400 tracking-widest uppercase">Diferenciais</span>
-              <span className="h-px w-8 bg-[#4f46e5]" />
+              <span className="h-px w-8 bg-[#0F4C81]" />
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Por que escolher a GNOQ?</h2>
             <p className="text-gray-500 text-base max-w-2xl mx-auto leading-relaxed">
@@ -123,9 +123,9 @@ export default function Home() {
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <FeatureCard icon={<Zap className="h-6 w-6 text-[#4f46e5]" />} title="Velocidade sem abrir mão da qualidade" description="Arquitetura moderna, CI/CD automatizado e deploy contínuo. Seu produto no ar mais rápido, com estabilidade e sem surpresas." />
-            <FeatureCard icon={<ShieldCheck className="h-6 w-6 text-[#4f46e5]" />} title="Segurança por design" description="Autenticação robusta, criptografia ponta a ponta, conformidade LGPD e proteção contra ameaças atuais — desde a concepção." />
-            <FeatureCard icon={<Cpu className="h-6 w-6 text-[#4f46e5]" />} title="Escalabilidade real" description="De 100 para 1 milhão de usuários sem reescrever tudo. Microservices, serverless e cloud-native quando faz sentido para o seu caso." />
+            <FeatureCard icon={<Zap className="h-6 w-6 text-[#0F4C81]" />} title="Velocidade sem abrir mão da qualidade" description="Arquitetura moderna, CI/CD automatizado e deploy contínuo. Seu produto no ar mais rápido, com estabilidade e sem surpresas." />
+            <FeatureCard icon={<ShieldCheck className="h-6 w-6 text-[#0F4C81]" />} title="Segurança por design" description="Autenticação robusta, criptografia ponta a ponta, conformidade LGPD e proteção contra ameaças atuais — desde a concepção." />
+            <FeatureCard icon={<Cpu className="h-6 w-6 text-[#0F4C81]" />} title="Escalabilidade real" description="De 100 para 1 milhão de usuários sem reescrever tudo. Microservices, serverless e cloud-native quando faz sentido para o seu caso." />
           </div>
         </div>
       </section>
@@ -136,7 +136,7 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-[380px_1fr] gap-16 items-start">
             <div className="lg:sticky lg:top-28">
               <div className="flex items-center gap-4 mb-4">
-                <span className="h-px w-8 bg-[#4f46e5]" />
+                <span className="h-px w-8 bg-[#0F4C81]" />
                 <span className="text-xs font-mono text-gray-400 tracking-widest uppercase">Serviços</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-5">
@@ -146,7 +146,7 @@ export default function Home() {
                 Do sistema interno ao app mobile, passando por integrações e dashboards — entregamos
                 soluções completas com time dedicado e comunicação transparente.
               </p>
-              <Button className="bg-[#4f46e5] hover:bg-[#4338ca] text-white px-7 py-5 text-sm font-medium shadow-lg shadow-[#4f46e5]/20" asChild>
+              <Button className="bg-[#00719C] hover:bg-[#005f85] text-white px-7 py-5 text-sm font-medium shadow-lg shadow-[#0F4C81]/20" asChild>
                 <Link href="/produtos">
                   Ver todos os serviços
                   <ArrowRight className="h-4 w-4 ml-2" />
@@ -168,12 +168,12 @@ export default function Home() {
       {/* ── CTA intermediário ── */}
       <section className="py-24 md:py-32 border-t border-gray-100">
         <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
-          <div className="relative rounded-3xl border border-[#4f46e5]/20 bg-[#4f46e5]/5 overflow-hidden px-8 py-16 md:py-20">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[400px] w-[700px] rounded-full bg-[#4f46e5]/8 blur-[100px] pointer-events-none" />
-            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#4f46e5]/30 to-transparent" />
+          <div className="relative rounded-3xl border border-[#0F4C81]/20 bg-[#0F4C81]/5 overflow-hidden px-8 py-16 md:py-20">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[400px] w-[700px] rounded-full bg-[#0F4C81]/8 blur-[100px] pointer-events-none" />
+            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#0F4C81]/30 to-transparent" />
             <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
-                <p className="text-xs font-mono text-[#4f46e5] tracking-widest uppercase mb-4 font-semibold">Sem compromisso</p>
+                <p className="text-xs font-mono text-[#0F4C81] tracking-widest uppercase mb-4 font-semibold">Sem compromisso</p>
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-5 leading-tight">
                   Pronto para acelerar<br />seu negócio?
                 </h2>
@@ -184,7 +184,7 @@ export default function Home() {
               <div className="flex flex-col gap-4">
                 {["Reunião de discovery gratuita", "Proposta com escopo, prazo e investimento", "Contrato formal + NDA quando necessário", "Conformidade LGPD garantida"].map((item) => (
                   <div key={item} className="flex items-center gap-3 text-sm text-gray-700">
-                    <CheckCircle2 className="h-4 w-4 text-[#4f46e5] shrink-0" />
+                    <CheckCircle2 className="h-4 w-4 text-[#0F4C81] shrink-0" />
                     {item}
                   </div>
                 ))}
@@ -202,9 +202,9 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <div className="flex items-center justify-center gap-4 mb-4">
-              <span className="h-px w-8 bg-[#4f46e5]" />
+              <span className="h-px w-8 bg-[#0F4C81]" />
               <span className="text-xs font-mono text-gray-400 tracking-widest uppercase">Stack</span>
-              <span className="h-px w-8 bg-[#4f46e5]" />
+              <span className="h-px w-8 bg-[#0F4C81]" />
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Tecnologias que dominamos</h2>
             <p className="text-gray-500 text-sm max-w-xl mx-auto leading-relaxed">
@@ -212,12 +212,12 @@ export default function Home() {
             </p>
           </div>
           <div className="grid grid-cols-3 sm:grid-cols-6 gap-6 md:gap-8 items-start justify-items-center">
-            <TechBadge icon={<Zap className="h-6 w-6 text-[#4f46e5]" />} label="Next.js" />
-            <TechBadge icon={<Code2 className="h-6 w-6 text-[#4f46e5]" />} label="Angular" />
-            <TechBadge icon={<Database className="h-6 w-6 text-[#4f46e5]" />} label="Supabase" />
-            <TechBadge icon={<Database className="h-6 w-6 text-[#4f46e5]" />} label="PostgreSQL" />
-            <TechBadge icon={<BarChart3 className="h-6 w-6 text-[#4f46e5]" />} label="Power BI" />
-            <TechBadge icon={<Code className="h-6 w-6 text-[#4f46e5]" />} label="TypeScript" />
+            <TechBadge icon={<Zap className="h-6 w-6 text-[#0F4C81]" />} label="Next.js" />
+            <TechBadge icon={<Code2 className="h-6 w-6 text-[#0F4C81]" />} label="Angular" />
+            <TechBadge icon={<Database className="h-6 w-6 text-[#0F4C81]" />} label="Supabase" />
+            <TechBadge icon={<Database className="h-6 w-6 text-[#0F4C81]" />} label="PostgreSQL" />
+            <TechBadge icon={<BarChart3 className="h-6 w-6 text-[#0F4C81]" />} label="Power BI" />
+            <TechBadge icon={<Code className="h-6 w-6 text-[#0F4C81]" />} label="TypeScript" />
           </div>
         </div>
       </section>
@@ -231,7 +231,7 @@ export default function Home() {
           <p className="text-gray-500 mb-10 max-w-xl mx-auto text-base leading-relaxed">
             Mande uma mensagem. Em até 48h você recebe diagnóstico inicial e proposta sem compromisso.
           </p>
-          <Button size="lg" className="bg-[#4f46e5] hover:bg-[#4338ca] text-white px-10 py-7 text-base font-medium shadow-xl shadow-[#4f46e5]/20" asChild>
+          <Button size="lg" className="bg-[#00719C] hover:bg-[#005f85] text-white px-10 py-7 text-base font-medium shadow-xl shadow-[#0F4C81]/20" asChild>
             <Link href="/contato">
               Falar com um especialista
               <ArrowRight className="h-5 w-5 ml-2" />
