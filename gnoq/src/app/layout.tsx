@@ -13,11 +13,12 @@ const inter = Inter({
 export const metadata: Metadata = {
   title      : "GNOQ | Global Node Of Quantum",
   description: "Engenharia digital para empresas que pensam à frente.",
+  icons: "/public/icon.jpg"
 };
 
 export default function RootLayout({children}: Readonly<{children: React.ReactNode}>) {
   return (
-    <html lang="en">
+    <html lang="pt-br">
       <head>
         <meta name="google-site-verification" content="tDbwlgNIMrsZ_ks2DQ0Eqbp8sz-yqWlCCoK-V8BKVxk" />
       </head>
