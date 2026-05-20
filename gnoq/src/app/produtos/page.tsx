@@ -141,15 +141,15 @@ const SERVICES: Service[] = [
 const CASES: Case[] = [
   {
     sector: "Indústria",
-    title: "Lider Field — ERP Personalizado",
+    title: "Lider Field Marketing & Servicos",
     description:
-      "[PLACEHOLDER — Descreva o problema do cliente, o que foi construído e o impacto gerado.]",
+      "Gerenciamento de candidatos, vagas e clientes",
     results: [
-      "[PLACEHOLDER — Ex: 40% de redução no tempo de abertura de OS]",
-      "[PLACEHOLDER — Ex: Integração com 3 sistemas legados]",
-      "[PLACEHOLDER — Ex: 200 usuários simultâneos]",
+      "Sem controle por planilhas, agora tudo pelo aplicativo;",
+      "Maior controle e gerenciamento do tempo, antes demorava cerca de 2 horas para abrir uma vaga com tudo dentro do processo;",
+      "Fluxo de aprovacao de vagas mais conciso e confiavel, sem o uso de emails e planilhas.",
     ],
-    tech: ["Next.js", "PostgreSQL", "Supabase"],
+    tech: ["Next.js", "Java", "Supabase"],
   },
 ];
 
@@ -576,8 +576,8 @@ export default function ProdutosPage() {
       <section className="py-24 md:py-32 border-t border-gray-100 bg-white">
         <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
           <div className="relative rounded-3xl border border-[#0F4C81]/20 bg-[#0F4C81]/5 overflow-hidden px-8 py-16 md:py-20 text-center">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[400px] w-[600px] rounded-full bg-[#0F4C81]/8 blur-[100px] pointer-events-none" />
-            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#0F4C81]/30 to-transparent" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-100 w-150 rounded-full bg-[#0F4C81]/8 blur-[100px] pointer-events-none" />
+            <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-[#0F4C81]/30 to-transparent" />
             <div className="relative">
               <p className="text-xs font-mono text-[#0F4C81] tracking-widest uppercase mb-4 font-semibold">
                 Próximo passo
