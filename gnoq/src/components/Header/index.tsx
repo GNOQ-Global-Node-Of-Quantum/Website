@@ -3,20 +3,16 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { Menu } from "lucide-react";
+import { Languages, Menu } from "lucide-react";
+import { useLanguage } from "@/app/shared/features/language-context";
 import {
   Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger,
 } from "@/components/ui/sheet";
 
-const navLinks = [
-  { href: "/",            label: "Início" },
-  { href: "/produtos",    label: "Produtos" },
-  { href: "/privacidade", label: "Privacidade" },
-  { href: "/contato",     label: "Contato" },
-];
-
 export function Header() {
   const pathname = usePathname();
+  const { content, language, toggleLanguage } = useLanguage();
+  const navLinks = content.nav;
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
@@ -45,6 +41,18 @@ export function Header() {
                 <Link href={href}>{label}</Link>
               </Button>
             ))}
+            <Button
+              variant="ghost"
+              size="sm"
+              className="ml-2 gap-1 border border-gray-200 px-3 text-[#0F4C81] hover:border-[#0F4C81]/30 hover:bg-[#0F4C81]/8 hover:text-[#0F4C81]"
+              onClick={toggleLanguage}
+              aria-label={content.languageToggle.label}
+            >
+              <Languages className="h-4 w-4" />
+              <span className={language === "pt-BR" ? "font-bold text-[#0F4C81]" : "text-gray-400"}>PT</span>
+              <span className="text-gray-300">|</span>
+              <span className={language === "en" ? "font-bold text-[#0F4C81]" : "text-gray-400"}>EN</span>
+            </Button>
           </nav>
 
           {/* Mobile */}
@@ -53,7 +61,7 @@ export function Header() {
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon" className="text-gray-600 hover:bg-gray-100">
                   <Menu className="h-6 w-6" />
-                  <span className="sr-only">Abrir menu</span>
+                  <span className="sr-only">{content.menuLabel}</span>
                 </Button>
               </SheetTrigger>
               <SheetContent side="right" className="w-75 sm:w-100 bg-gray-100 border-l border-gray-200 p-5">
@@ -72,6 +80,17 @@ export function Header() {
                       }`}
                     >{label}</Link>
                   ))}
+                  <button
+                    type="button"
+                    onClick={toggleLanguage}
+                    className="mt-3 flex items-center gap-3 rounded-lg border border-gray-200 px-4 py-3 text-left text-xl font-medium text-[#0F4C81] transition-colors hover:bg-[#0F4C81]/5"
+                    aria-label={content.languageToggle.label}
+                  >
+                    <Languages className="h-5 w-5" />
+                    <span className={language === "pt-BR" ? "font-bold text-[#0F4C81]" : "text-gray-400"}>PT</span>
+                    <span className="text-gray-300">|</span>
+                    <span className={language === "en" ? "font-bold text-[#0F4C81]" : "text-gray-400"}>EN</span>
+                  </button>
                 </nav>
               </SheetContent>
             </Sheet>

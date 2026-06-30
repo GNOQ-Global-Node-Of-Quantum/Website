@@ -1,12 +1,9 @@
+"use client";
+
 // components/Footer/index.tsx
 import Link from "next/link";
 import { Github, Instagram, Linkedin, Mail } from "lucide-react";
-
-const footerLinks = [
-  { href: "/produtos",    label: "Produtos" },
-  { href: "/privacidade", label: "Privacidade" },
-  { href: "/contato",     label: "Contato" },
-];
+import { useLanguage } from "@/app/shared/features/language-context";
 
 const socials = [
   { href: "https://www.linkedin.com/company/gnoq/", icon: <Linkedin className="h-4 w-4" />, label: "LinkedIn" },
@@ -16,6 +13,8 @@ const socials = [
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
+  const { content } = useLanguage();
+  const footerLinks = content.nav.filter((item) => item.href !== "/");
 
   return (
     <footer className="w-full bg-gray-100 border-t border-gray-200 text-gray-600">
@@ -31,8 +30,7 @@ export function Footer() {
               <img src="/gnoq.png" alt="GNOQ" className="h-20 w-auto rounded-lg" />
             </Link>
             <p className="text-sm leading-relaxed text-gray-500 max-w-xs">
-              Engenharia digital para empresas que pensam à frente. Sistemas robustos,
-              escaláveis e sob medida que transformam processos em vantagem competitiva.
+              {content.footer.description}
             </p>
             {/* Sociais no mobile */}
             <div className="flex items-center gap-3 md:hidden pt-1">
@@ -49,7 +47,7 @@ export function Footer() {
 
           {/* Col 2 — Links */}
           <div className="space-y-5">
-            <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-widest">Navegação</h3>
+            <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-widest">{content.footer.navigationTitle}</h3>
             <ul className="space-y-3">
               {footerLinks.map(({ href, label }) => (
                 <li key={href}>
@@ -63,7 +61,7 @@ export function Footer() {
 
           {/* Col 3 — Contato + sociais */}
           <div className="space-y-5">
-            <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-widest">Contato</h3>
+            <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-widest">{content.footer.contactTitle}</h3>
 
             <a href="mailto:gabriel.neves@gnoq.com.br"
               className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-[#0F4C81] transition-colors"
@@ -91,8 +89,8 @@ export function Footer() {
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400">
             <p>© {currentYear} GNOQ — Global Node Of Quantum · CNPJ 57.738.857/0001-20</p>
             <div className="flex items-center gap-5">
-              <Link href="/privacidade" className="hover:text-[#0F4C81] transition-colors">Privacidade</Link>
-              <Link href="/privacidade" className="hover:text-[#0F4C81] transition-colors">Termos</Link>
+              <Link href="/privacidade" className="hover:text-[#0F4C81] transition-colors">{content.footer.privacy}</Link>
+              <Link href="/privacidade" className="hover:text-[#0F4C81] transition-colors">{content.footer.terms}</Link>
             </div>
           </div>
         </div>

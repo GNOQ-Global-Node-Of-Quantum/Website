@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { Header } from "@/components/Header";
 import { Toaster } from "sonner";
 import { Footer } from "@/components/Footer";
+import { LanguageProvider } from "@/app/shared/features/language-context";
 import "./global.css"
 
 const inter = Inter({
@@ -23,10 +24,12 @@ export default function RootLayout({children}: Readonly<{children: React.ReactNo
         <meta name="google-site-verification" content="tDbwlgNIMrsZ_ks2DQ0Eqbp8sz-yqWlCCoK-V8BKVxk" />
       </head>
       <body className={`${inter.variable} antialiased`}>
-        <Toaster richColors />
-        <Header />
-        {children}
-        <Footer />
+        <LanguageProvider>
+          <Toaster richColors />
+          <Header />
+          {children}
+          <Footer />
+        </LanguageProvider>
       </body>
     </html>
   );
