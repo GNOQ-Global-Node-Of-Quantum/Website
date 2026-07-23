@@ -1,277 +1,340 @@
 "use client";
 
-// app/page.tsx
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import {
-  ArrowRight, Code2, Zap, ShieldCheck, Cpu,
-  Database, BarChart3, Code, Smartphone, Globe,
-  Layers, MessageSquare, CheckCircle2,
+  ArrowRight,
+  BadgeCheck,
+  Blocks,
+  CheckCircle2,
+  FileQuestion,
+  Gamepad2,
+  Lightbulb,
+  MessageCircle,
+  MousePointerClick,
+  Rocket,
+  Sparkles,
+  Workflow,
 } from "lucide-react";
-import { SolicitarOrcamento } from "@/components/SolicitarOrcamento";
-import { useLanguage } from "@/app/shared/features/language-context";
+import { Button } from "@/components/ui/button";
 
-function FeatureCard({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) {
-  return (
-    <div className="group flex flex-col gap-4 rounded-2xl border border-gray-200 bg-white p-8 hover:border-[#0F4C81]/40 hover:shadow-lg hover:shadow-[#0F4C81]/8 transition-all duration-300">
-      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#0F4C81]/10 border border-[#0F4C81]/15 group-hover:bg-[#0F4C81]/15 transition-all duration-300">
-        {icon}
-      </div>
-      <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
-      <p className="text-sm text-gray-500 leading-relaxed">{description}</p>
-    </div>
-  );
-}
-
-function ServiceItem({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) {
-  return (
-    <div className="group flex gap-5 p-6 rounded-xl border border-gray-200 bg-white hover:border-[#0F4C81]/30 hover:shadow-md transition-all duration-200">
-      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#0F4C81]/10 border border-[#0F4C81]/15 text-[#0F4C81]">
-        {icon}
-      </div>
-      <div>
-        <p className="font-semibold text-gray-900 text-sm mb-1">{title}</p>
-        <p className="text-xs text-gray-500 leading-relaxed">{description}</p>
-      </div>
-    </div>
-  );
-}
-
-function TechBadge({ icon, label }: { icon: React.ReactNode; label: string }) {
-  return (
-    <div className="group flex flex-col items-center gap-3 text-center">
-      <div className="flex h-14 w-14 items-center justify-center rounded-xl border border-gray-200 bg-white group-hover:border-[#0F4C81]/40 group-hover:bg-[#0F4C81]/5 transition-all duration-300 shadow-sm">
-        {icon}
-      </div>
-      <span className="text-sm font-medium text-gray-500 group-hover:text-gray-700 transition-colors">{label}</span>
-    </div>
-  );
-}
-
-const differentiatorIcons = [
-  <Zap key="speed" className="h-6 w-6 text-[#0F4C81]" />,
-  <ShieldCheck key="security" className="h-6 w-6 text-[#0F4C81]" />,
-  <Cpu key="scale" className="h-6 w-6 text-[#0F4C81]" />,
+const painServices = [
+  {
+    icon: MousePointerClick,
+    pain: "Preciso vender melhor online",
+    solution: "Sites, landing pages e e-commerce",
+    text: "Criamos páginas e jornadas pensadas para transformar tráfego em conversas comerciais, pedidos e leads qualificados.",
+  },
+  {
+    icon: Workflow,
+    pain: "Tenho processo manual demais",
+    solution: "Sistemas internos e automações",
+    text: "Mapeamos tarefas repetitivas, centralizamos informações e conectamos ferramentas para reduzir retrabalho operacional.",
+  },
+  {
+    icon: Rocket,
+    pain: "Quero criar um produto digital",
+    solution: "Apps, SaaS e plataformas",
+    text: "Saímos da ideia para um produto utilizável, com arquitetura preparada para evoluir depois da primeira versão.",
+  },
+  {
+    icon: Gamepad2,
+    pain: "Quero engajar pessoas",
+    solution: "Jogos e experiências interativas",
+    text: "Desenvolvemos experiências para campanhas, treinamento, eventos, educação, marca empregadora e relacionamento.",
+  },
+  {
+    icon: FileQuestion,
+    pain: "Tenho uma ideia, mas não sei se vale",
+    solution: "MVP e validação",
+    text: "Ajudamos a testar hipóteses antes de grandes investimentos, com escopo enxuto e aprendizado real de mercado.",
+  },
 ];
 
-const serviceIcons = [
-  <Layers key="systems" className="h-5 w-5" />,
-  <Globe key="web" className="h-5 w-5" />,
-  <Smartphone key="mobile" className="h-5 w-5" />,
-  <Zap key="automation" className="h-5 w-5" />,
-  <BarChart3 key="analytics" className="h-5 w-5" />,
-  <MessageSquare key="consulting" className="h-5 w-5" />,
+const funnelSteps = [
+  "Conteúdo, indicação, Google ou LinkedIn",
+  "Site ou landing page específica",
+  "Diagnóstico gratuito",
+  "Reunião comercial",
+  "Proposta com escopo",
+  "Projeto inicial",
+  "Relacionamento e indicação",
 ];
+
+const proofPoints = [
+  "Leitura do problema antes da solução",
+  "Escopo claro para evitar investimento errado",
+  "Entrega sob medida: app, site, sistema, jogo, automação ou MVP",
+  "Comunicação direta, contrato formal e próximos passos objetivos",
+];
+
+const educationalContents = [
+  "Quando sua empresa precisa de um sistema interno?",
+  "Como validar uma ideia de app antes de gastar muito?",
+  "Site institucional ou landing page: qual usar?",
+  "O que automatizar primeiro em uma empresa?",
+  "Como um MVP reduz risco em projetos digitais?",
+];
+
+const futurePages = [
+  "/sistemas-internos",
+  "/criacao-de-sites",
+  "/mvp-para-startups",
+  "/automacao-de-processos",
+  "/jogos-e-experiencias",
+];
+
+function SectionLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="mb-4 flex items-center gap-3 text-xs font-semibold uppercase tracking-widest text-[#0F4C81]">
+      <span className="h-px w-8 bg-[#0F4C81]" />
+      {children}
+    </div>
+  );
+}
 
 export default function Home() {
-  const { content } = useLanguage();
-  const home = content.home;
-
   return (
     <main className="min-h-screen bg-gray-50 text-gray-900">
-
-      {/* ── Hero ── */}
-      <section className="relative overflow-hidden bg-white">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 h-[600px] w-[900px] rounded-full bg-[#0F4C81]/6 blur-[140px] pointer-events-none" />
+      <section className="relative overflow-hidden border-b border-gray-200 bg-white">
         <div
           className="absolute inset-0 opacity-[0.035]"
           style={{
-            backgroundImage: "linear-gradient(#0F4C81 1px, transparent 1px), linear-gradient(90deg, #0F4C81 1px, transparent 1px)",
-            backgroundSize: "72px 72px",
+            backgroundImage:
+              "linear-gradient(#0F4C81 1px, transparent 1px), linear-gradient(90deg, #0F4C81 1px, transparent 1px)",
+            backgroundSize: "64px 64px",
           }}
         />
-        <div className="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-t from-white to-transparent" />
-
-        <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8 pt-24 pb-32 md:pt-36 md:pb-44 text-center">
-          <div className="inline-flex items-center gap-2.5 rounded-full border border-[#0F4C81]/25 bg-[#0F4C81]/8 px-4 py-2 text-xs text-[#0F4C81] mb-8 tracking-wide font-medium">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#0F4C81] animate-pulse" />
-            {home.badge}
+        <div className="relative mx-auto grid max-w-7xl gap-12 px-5 py-20 sm:px-6 md:py-28 lg:grid-cols-[1.05fr_0.95fr] lg:px-8">
+          <div>
+            <div className="mb-7 inline-flex items-center gap-2 rounded-lg border border-[#0F4C81]/20 bg-[#0F4C81]/8 px-4 py-2 text-sm font-medium text-[#0F4C81]">
+              <Sparkles className="h-4 w-4" />
+              Diagnóstico, estratégia e desenvolvimento sob medida
+            </div>
+            <h1 className="max-w-4xl text-4xl font-bold leading-[1.05] tracking-tight text-gray-950 sm:text-5xl md:text-6xl">
+              Soluções digitais para vender melhor, automatizar processos e tirar ideias do papel.
+            </h1>
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-gray-600">
+              A GNOQ cria apps, sites, jogos, sistemas, plataformas, automações e produtos digitais sob medida para empresas que precisam resolver problemas reais com tecnologia.
+            </p>
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+              <Button className="h-12 rounded-lg bg-[#0F4C81] px-6 text-base font-semibold text-white shadow-lg shadow-[#0F4C81]/20 hover:bg-[#0a3d6b]" asChild>
+                <Link href="/diagnostico">
+                  Solicitar diagnóstico
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </Button>
+              <Button variant="outline" className="h-12 rounded-lg border-[#0F4C81]/25 bg-white px-6 text-base font-semibold text-[#0F4C81] hover:bg-[#0F4C81]/5 hover:text-[#0F4C81]" asChild>
+                <a href="https://wa.me/5531994525631?text=Olá! Vim pelo site da GNOQ e quero conversar sobre um projeto." target="_blank" rel="noopener noreferrer">
+                  <MessageCircle className="h-4 w-4" />
+                  Conversar sobre meu projeto
+                </a>
+              </Button>
+            </div>
           </div>
 
-          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.04] max-w-5xl mx-auto text-gray-900">
-            {home.title}
-            <span className="block text-[#0F4C81] mt-2">{home.titleAccent}</span>
-          </h1>
+          <aside className="self-end rounded-lg border border-gray-200 bg-gray-50 p-6 shadow-sm">
+            <p className="text-sm font-semibold uppercase tracking-widest text-gray-400">Primeiro passo</p>
+            <h2 className="mt-3 text-2xl font-bold leading-tight text-gray-950">
+              Descubra qual solução digital sua empresa precisa antes de investir errado.
+            </h2>
+            <p className="mt-4 text-sm leading-relaxed text-gray-600">
+              O diagnóstico organiza problema, prioridade, tipo de solução, prazo e investimento provável antes de virar proposta.
+            </p>
+            <div className="mt-6 grid gap-3">
+              {proofPoints.map((item) => (
+                <div key={item} className="flex gap-3 text-sm text-gray-700">
+                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#0F4C81]" />
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+          </aside>
+        </div>
+      </section>
 
-          <p className="mt-8 text-lg md:text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed">
-            {home.description}
-          </p>
+      <section id="servicos" className="border-b border-gray-200 bg-white py-18 md:py-24">
+        <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+          <div className="max-w-3xl">
+            <SectionLabel>Serviços por dor do cliente</SectionLabel>
+            <h2 className="text-3xl font-bold tracking-tight text-gray-950 md:text-4xl">
+              O site precisa falar primeiro do problema, depois da tecnologia.
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-gray-600">
+              Essa é a estratégia certa para captar empresas que ainda não sabem se precisam de um site, app, sistema, automação ou MVP. A conversa começa pela dor.
+            </p>
+          </div>
 
-          <div className="mt-10 flex flex-col sm:flex-row items-stretch justify-center gap-3">
-            <SolicitarOrcamento
-              label={home.primaryCta}
-              className="h-12 rounded-lg bg-[#0F4C81] px-7 text-base font-semibold shadow-[0_18px_34px_-20px_rgba(15,76,129,0.9)] hover:bg-[#0a3d6b]"
-              icon={<ArrowRight className="ml-1 h-4 w-4" />}
-            />
-            <Button
-              size="lg"
-              variant="outline"
-              className="h-12 rounded-lg border-[#0F4C81]/20 bg-white/85 px-7 text-base font-semibold text-[#0F4C81] shadow-sm shadow-[#0F4C81]/5 backdrop-blur-sm hover:border-[#0F4C81]/35 hover:bg-[#0F4C81]/5 hover:text-[#0F4C81]"
-              asChild
-            >
-              <Link href="/aplicativos">
-                <Smartphone className="h-4 w-4" />
-                {home.appsCta}
-                <ArrowRight className="h-4 w-4 ml-2" />
+          <div className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+            {painServices.map(({ icon: Icon, pain, solution, text }) => (
+              <article key={pain} className="rounded-lg border border-gray-200 bg-gray-50 p-5">
+                <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-lg border border-[#0F4C81]/15 bg-white text-[#0F4C81]">
+                  <Icon className="h-5 w-5" />
+                </div>
+                <h3 className="text-base font-bold leading-snug text-gray-950">{pain}</h3>
+                <p className="mt-2 text-sm font-semibold text-[#0F4C81]">{solution}</p>
+                <p className="mt-4 text-sm leading-relaxed text-gray-600">{text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="diagnostico" className="border-b border-gray-200 bg-gray-50 py-18 md:py-24">
+        <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
+          <div>
+            <SectionLabel>Landing page de conversão</SectionLabel>
+            <h2 className="text-3xl font-bold tracking-tight text-gray-950 md:text-4xl">
+              Diagnóstico gratuito como porta de entrada comercial.
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-gray-600">
+              O MVP de marketing deve vender uma decisão mais segura, não “desenvolvimento” de forma genérica. A promessa central é clara: entender a solução certa antes de gastar.
+            </p>
+            <Button className="mt-8 h-12 rounded-lg bg-[#0F4C81] px-6 text-base font-semibold text-white hover:bg-[#0a3d6b]" asChild>
+              <Link href="/diagnostico">
+                Solicitar diagnóstico
+                <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
           </div>
 
-          <div className="mt-20 inline-flex flex-wrap justify-center gap-10 sm:gap-16 border border-gray-200 rounded-2xl bg-gray-50 px-10 py-6 shadow-sm">
-            {home.stats.map((s) => (
-              <div key={s.label} className="text-center">
-                <p className="text-2xl font-bold text-gray-900">{s.value}</p>
-                <p className="text-xs text-gray-400 mt-0.5 uppercase tracking-widest">{s.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Por que a GNOQ ── */}
-      <section className="py-24 md:py-32 border-t border-gray-100">
-        <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="flex items-center justify-center gap-4 mb-4">
-              <span className="h-px w-8 bg-[#0F4C81]" />
-              <span className="text-xs font-mono text-gray-400 tracking-widest uppercase">{home.differentiatorsEyebrow}</span>
-              <span className="h-px w-8 bg-[#0F4C81]" />
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{home.differentiatorsTitle}</h2>
-            <p className="text-gray-500 text-base max-w-2xl mx-auto leading-relaxed">
-              {home.differentiatorsDescription}
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {home.differentiators.map((item, index) => (
-              <FeatureCard
-                key={item.title}
-                icon={differentiatorIcons[index]}
-                title={item.title}
-                description={item.description}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Serviços ── */}
-      <section className="py-24 md:py-32 border-t border-gray-100 bg-white">
-        <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-[380px_1fr] gap-16 items-start">
-            <div className="lg:sticky lg:top-28">
-              <div className="flex items-center gap-4 mb-4">
-                <span className="h-px w-8 bg-[#0F4C81]" />
-                <span className="text-xs font-mono text-gray-400 tracking-widest uppercase">{home.servicesEyebrow}</span>
-              </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-5">
-                {home.servicesTitle}
-              </h2>
-              <p className="text-gray-500 leading-relaxed text-sm mb-8">
-                {home.servicesDescription}
-              </p>
-              <Button className="bg-[#00719C] hover:bg-[#005f85] text-white px-7 py-5 text-sm font-medium shadow-lg shadow-[#0F4C81]/20" asChild>
-                <Link href="/produtos">
-                  {home.servicesCta}
-                  <ArrowRight className="h-4 w-4 ml-2" />
-                </Link>
-              </Button>
-              <Button variant="ghost" className="mt-3 text-gray-600 hover:text-gray-900 hover:bg-gray-100 border border-gray-200 hover:border-gray-300 px-7 py-5 text-sm font-medium" asChild>
-                <Link href="/aplicativos">
-                  {home.freeAppsCta}
-                  <ArrowRight className="h-4 w-4 ml-2" />
-                </Link>
-              </Button>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {home.serviceItems.map((item, index) => (
-                <ServiceItem
-                  key={item.title}
-                  icon={serviceIcons[index]}
-                  title={item.title}
-                  description={item.description}
-                />
+          <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
+            <p className="text-sm font-semibold uppercase tracking-widest text-gray-400">O que você recebe</p>
+            <div className="mt-5 grid gap-4">
+              {[
+                {
+                  title: "Direção da solução",
+                  text: "Entenda se faz mais sentido começar por site, app, sistema, automação, jogo, MVP ou outra rota.",
+                },
+                {
+                  title: "Riscos antes do investimento",
+                  text: "Mapeamos pontos que podem inflar prazo, custo ou escopo antes de você assumir um projeto maior.",
+                },
+                {
+                  title: "Próximos passos comerciais",
+                  text: "Saia com clareza para reunião, proposta, escopo inicial e primeira entrega possível.",
+                },
+              ].map((item) => (
+                <div key={item.title} className="rounded-lg border border-gray-200 bg-gray-50 p-4">
+                  <h3 className="text-sm font-bold text-gray-950">{item.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-gray-600">{item.text}</p>
+                </div>
               ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── CTA intermediário ── */}
-      <section className="py-24 md:py-32 border-t border-gray-100">
-        <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
-          <div className="relative rounded-3xl border border-[#0F4C81]/20 bg-[#0F4C81]/5 overflow-hidden px-8 py-16 md:py-20">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[400px] w-[700px] rounded-full bg-[#0F4C81]/8 blur-[100px] pointer-events-none" />
-            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#0F4C81]/30 to-transparent" />
-            <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <p className="text-xs font-mono text-[#0F4C81] tracking-widest uppercase mb-4 font-semibold">{home.middleCtaEyebrow}</p>
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-5 leading-tight">
-                  {home.middleCtaTitle}
-                </h2>
-                <p className="text-gray-500 leading-relaxed text-sm">
-                  {home.middleCtaDescription}
-                </p>
-              </div>
-              <div className="flex flex-col gap-4">
-                {home.middleCtaChecklist.map((item) => (
-                  <div key={item} className="flex items-center gap-3 text-sm text-gray-700">
-                    <CheckCircle2 className="h-4 w-4 text-[#0F4C81] shrink-0" />
-                    {item}
-                  </div>
-                ))}
-                <div className="pt-4">
-                  <SolicitarOrcamento label={home.primaryCta} />
+      <section id="cases" className="border-b border-gray-200 bg-white py-18 md:py-24">
+        <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-6 lg:grid-cols-[0.85fr_1.15fr] lg:px-8">
+          <div>
+            <SectionLabel>Prova de capacidade</SectionLabel>
+            <h2 className="text-3xl font-bold tracking-tight text-gray-950 md:text-4xl">
+              Começar pequeno não enfraquece a marca; deixa a prova mais honesta.
+            </h2>
+          </div>
+          <article className="rounded-lg border border-gray-200 bg-gray-50 p-7">
+            <div className="mb-5 flex items-center gap-3 text-[#0F4C81]">
+              <BadgeCheck className="h-5 w-5" />
+            <span className="text-sm font-semibold uppercase tracking-widest">ERP em desenvolvimento</span>
+          </div>
+          <h3 className="text-2xl font-bold text-gray-950">Lider Field Marketing e Serviços</h3>
+          <p className="mt-4 text-base leading-relaxed text-gray-600">
+              Desenvolvimento de um ERP sob medida para uma empresa de field marketing e serviços, com foco em operação, gestão de processos e centralização de informações.
+            </p>
+            <div className="mt-6 grid gap-3 sm:grid-cols-3">
+              {["ERP sob medida", "Operação", "Processos"].map((item) => (
+                <div key={item} className="rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm font-semibold text-gray-700">
+                  {item}
                 </div>
-              </div>
+              ))}
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="conteudos" className="border-b border-gray-200 bg-gray-50 py-18 md:py-24">
+        <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+          <div className="grid gap-10 lg:grid-cols-[380px_1fr]">
+            <div>
+              <SectionLabel>Conteúdo educativo</SectionLabel>
+              <h2 className="text-3xl font-bold tracking-tight text-gray-950 md:text-4xl">
+                Conteúdos curtos para transformar dúvida em lead.
+              </h2>
+              <p className="mt-4 text-base leading-relaxed text-gray-600">
+                Cada conteúdo deve terminar convidando para o diagnóstico, criando tráfego qualificado para Google e LinkedIn.
+              </p>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              {educationalContents.map((title) => (
+                <article key={title} className="rounded-lg border border-gray-200 bg-white p-5">
+                  <Lightbulb className="mb-5 h-5 w-5 text-[#0F4C81]" />
+                  <h3 className="text-base font-bold leading-snug text-gray-950">{title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-gray-600">
+                    Conteúdo objetivo com sinais práticos, exemplos e CTA para diagnóstico.
+                  </p>
+                </article>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── Tecnologias ── */}
-      <section className="py-24 md:py-32 border-t border-gray-100 bg-white">
-        <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <div className="flex items-center justify-center gap-4 mb-4">
-              <span className="h-px w-8 bg-[#0F4C81]" />
-              <span className="text-xs font-mono text-gray-400 tracking-widest uppercase">{home.techEyebrow}</span>
-              <span className="h-px w-8 bg-[#0F4C81]" />
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{home.techTitle}</h2>
-            <p className="text-gray-500 text-sm max-w-xl mx-auto leading-relaxed">
-              {home.techDescription}
+      <section className="border-b border-gray-200 bg-white py-18 md:py-24">
+        <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-8">
+          <div>
+            <SectionLabel>Arquitetura sugerida</SectionLabel>
+            <h2 className="text-3xl font-bold tracking-tight text-gray-950 md:text-4xl">
+              Estrutura inicial enxuta, preparada para crescer.
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-gray-600">
+              Agora: Home, Serviços por dor, Diagnóstico, Cases e Conteúdos. Depois: landing pages específicas para SEO e campanhas.
             </p>
           </div>
-          <div className="grid grid-cols-3 sm:grid-cols-6 gap-6 md:gap-8 items-start justify-items-center">
-            <TechBadge icon={<Zap className="h-6 w-6 text-[#0F4C81]" />} label="Next.js" />
-            <TechBadge icon={<Code2 className="h-6 w-6 text-[#0F4C81]" />} label="Angular" />
-            <TechBadge icon={<Database className="h-6 w-6 text-[#0F4C81]" />} label="Supabase" />
-            <TechBadge icon={<Database className="h-6 w-6 text-[#0F4C81]" />} label="PostgreSQL" />
-            <TechBadge icon={<BarChart3 className="h-6 w-6 text-[#0F4C81]" />} label="Power BI" />
-            <TechBadge icon={<Code className="h-6 w-6 text-[#0F4C81]" />} label="TypeScript" />
+          <div className="rounded-lg border border-gray-200 bg-gray-50 p-6">
+            <div className="grid gap-3">
+              {futurePages.map((page) => (
+                <div key={page} className="flex items-center gap-3 rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm font-semibold text-gray-700">
+                  <Blocks className="h-4 w-4 text-[#0F4C81]" />
+                  {page}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ── CTA final ── */}
-      <section className="py-24 md:py-32 border-t border-gray-100">
-        <div className="mx-auto max-w-4xl px-5 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-5 leading-tight">
-            {home.finalTitle}
-          </h2>
-          <p className="text-gray-500 mb-10 max-w-xl mx-auto text-base leading-relaxed">
-            {home.finalDescription}
-          </p>
-          <Button size="lg" className="bg-[#00719C] hover:bg-[#005f85] text-white px-10 py-7 text-base font-medium shadow-xl shadow-[#0F4C81]/20" asChild>
-            <Link href="/contato">
-              {home.finalCta}
-              <ArrowRight className="h-5 w-5 ml-2" />
-            </Link>
-          </Button>
+      <section className="bg-[#0F4C81] py-18 text-white md:py-24">
+        <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-widest text-white/65">Funil comercial</p>
+              <h2 className="mt-4 text-3xl font-bold tracking-tight md:text-4xl">
+                O site passa a trabalhar para gerar confiança, conversa e proposta.
+              </h2>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {funnelSteps.map((step, index) => (
+                <div key={step} className="rounded-lg border border-white/15 bg-white/10 px-4 py-3 text-sm font-semibold text-white">
+                  {index + 1}. {step}
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+            <Button className="h-12 rounded-lg bg-white px-6 text-base font-semibold text-[#0F4C81] hover:bg-gray-100" asChild>
+              <Link href="/diagnostico">
+                Solicitar diagnóstico
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
+            <Button variant="outline" className="h-12 rounded-lg border-white/25 bg-transparent px-6 text-base font-semibold text-white hover:bg-white/10 hover:text-white" asChild>
+              <a href="https://wa.me/5531994525631?text=Olá! Vim pelo site da GNOQ e quero conversar sobre um projeto." target="_blank" rel="noopener noreferrer">
+                Conversar no WhatsApp
+              </a>
+            </Button>
+          </div>
         </div>
       </section>
-
     </main>
   );
 }

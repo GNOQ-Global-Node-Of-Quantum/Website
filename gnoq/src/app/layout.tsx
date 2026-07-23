@@ -4,6 +4,7 @@ import { Header } from "@/components/Header";
 import { Toaster } from "sonner";
 import { Footer } from "@/components/Footer";
 import { LanguageProvider } from "@/app/shared/features/language-context";
+import { RouteTransition } from "@/components/RouteTransition";
 import "./global.css"
 
 const inter = Inter({
@@ -12,8 +13,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title      : "GNOQ | Global Node Of Quantum",
-  description: "Engenharia digital para empresas que pensam à frente.",
+  title      : "GNOQ | Soluções digitais sob medida",
+  description: "Apps, sites, jogos, sistemas, automações e produtos digitais sob medida para empresas que querem vender melhor, automatizar processos e validar ideias.",
   icons: "/public/icon.jpg"
 };
 
@@ -25,6 +26,7 @@ export default function RootLayout({children}: Readonly<{children: React.ReactNo
       </head>
       <body className={`${inter.variable} antialiased`}>
         <LanguageProvider>
+          <RouteTransition />
           <Toaster richColors />
           <Header />
           {children}

@@ -136,14 +136,15 @@ export const siteContent = {
     menuLabel: "Abrir menu",
     nav: [
       { href: "/", label: "Início" },
-      { href: "/produtos", label: "Serviços" },
-      { href: "/aplicativos", label: "Aplicativos" },
-      { href: "/privacidade", label: "Privacidade" },
+      { href: "/#servicos", label: "Serviços" },
+      { href: "/#cases", label: "Cases" },
+      { href: "/#conteudos", label: "Conteúdos" },
+      { href: "/diagnostico", label: "Diagnóstico" },
       { href: "/contato", label: "Contato" },
     ],
     footer: {
       description:
-        "Engenharia digital para empresas que pensam à frente. Sistemas robustos, escaláveis e sob medida que transformam processos em vantagem competitiva.",
+        "Apps, sites, jogos, sistemas, automações e produtos digitais sob medida para empresas que precisam vender melhor, operar melhor e validar ideias com clareza.",
       navigationTitle: "Navegação",
       contactTitle: "Contato",
       privacy: "Privacidade",
@@ -336,14 +337,15 @@ export const siteContent = {
     menuLabel: "Open menu",
     nav: [
       { href: "/", label: "Home" },
-      { href: "/produtos", label: "Services" },
-      { href: "/aplicativos", label: "Apps" },
-      { href: "/privacidade", label: "Privacy" },
+      { href: "/#servicos", label: "Services" },
+      { href: "/#cases", label: "Cases" },
+      { href: "/#conteudos", label: "Content" },
+      { href: "/diagnostico", label: "Diagnosis" },
       { href: "/contato", label: "Contact" },
     ],
     footer: {
       description:
-        "Digital engineering for forward-thinking companies. Robust, scalable and custom systems that turn processes into competitive advantage.",
+        "Custom apps, websites, games, systems, automations and digital products for companies that need to sell better, operate better and validate ideas with clarity.",
       navigationTitle: "Navigation",
       contactTitle: "Contact",
       privacy: "Privacy",

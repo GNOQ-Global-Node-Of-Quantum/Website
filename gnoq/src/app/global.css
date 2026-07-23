@@ -117,11 +117,19 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   * {
     @apply border-border outline-ring/50;
   }
   body {
     @apply bg-background text-foreground;
+  }
+
+  section[id] {
+    scroll-margin-top: 96px;
   }
 }
 
@@ -163,6 +171,23 @@
     to {
       background-position: 60px 60px;
     }
+  }
+
+  @keyframes gnoq-route-progress {
+    0% {
+      transform: translateX(-100%) scaleX(0.3);
+    }
+    55% {
+      transform: translateX(-18%) scaleX(0.75);
+    }
+    100% {
+      transform: translateX(0) scaleX(1);
+    }
+  }
+
+  .route-transition-bar {
+    transform-origin: left center;
+    animation: gnoq-route-progress 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
   }
 
   @media (prefers-reduced-motion: no-preference) {

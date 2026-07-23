@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -11,10 +12,40 @@ import {
 
 export function Header() {
   const pathname = usePathname();
+  const [hash, setHash] = useState("");
   const { content, language, toggleLanguage } = useLanguage();
   const navLinks = content.nav;
-  const isActive = (href: string) =>
-    href === "/" ? pathname === "/" : pathname.startsWith(href);
+
+  useEffect(() => {
+    const syncHash = () => setHash(window.location.hash);
+
+    syncHash();
+    window.addEventListener("hashchange", syncHash);
+    return () => window.removeEventListener("hashchange", syncHash);
+  }, [pathname]);
+
+  const isActive = (href: string) => {
+    if (href.includes("#")) {
+      const [targetPath, targetHash] = href.split("#");
+      return pathname === targetPath && hash === `#${targetHash}`;
+    }
+
+    if (href === "/") {
+      return pathname === "/" && !hash;
+    }
+
+    return pathname.startsWith(href);
+  };
+
+  const handleNavClick = (href: string) => {
+    if (href.includes("#")) {
+      const targetHash = href.split("#")[1];
+      setHash(`#${targetHash}`);
+      return;
+    }
+
+    setHash("");
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-gray-100/95 backdrop-blur-sm">
@@ -38,7 +69,7 @@ export function Header() {
                 }
                 asChild
               >
-                <Link href={href}>{label}</Link>
+                <Link href={href} onClick={() => handleNavClick(href)}>{label}</Link>
               </Button>
             ))}
             <Button
@@ -73,6 +104,7 @@ export function Header() {
                 <nav className="flex flex-col gap-1 mt-10">
                   {navLinks.map(({ href, label }) => (
                     <Link key={href} href={href}
+                      onClick={() => handleNavClick(href)}
                       className={`rounded-lg px-4 py-3 text-xl font-medium transition-colors ${
                         isActive(href)
                           ? "text-[#0F4C81] bg-[#0F4C81]/8"
