@@ -4,7 +4,6 @@ import Link from "next/link";
 import {
   ArrowRight,
   BadgeCheck,
-  Blocks,
   CheckCircle2,
   FileQuestion,
   Gamepad2,
@@ -50,16 +49,6 @@ const painServices = [
   },
 ];
 
-const funnelSteps = [
-  "Conteúdo, indicação, Google ou LinkedIn",
-  "Site ou landing page específica",
-  "Diagnóstico gratuito",
-  "Reunião comercial",
-  "Proposta com escopo",
-  "Projeto inicial",
-  "Relacionamento e indicação",
-];
-
 const proofPoints = [
   "Leitura do problema antes da solução",
   "Escopo claro para evitar investimento errado",
@@ -68,19 +57,26 @@ const proofPoints = [
 ];
 
 const educationalContents = [
-  "Quando sua empresa precisa de um sistema interno?",
-  "Como validar uma ideia de app antes de gastar muito?",
-  "Site institucional ou landing page: qual usar?",
-  "O que automatizar primeiro em uma empresa?",
-  "Como um MVP reduz risco em projetos digitais?",
-];
-
-const futurePages = [
-  "/sistemas-internos",
-  "/criacao-de-sites",
-  "/mvp-para-startups",
-  "/automacao-de-processos",
-  "/jogos-e-experiencias",
+  {
+    title: "Quando sua empresa precisa de um sistema interno?",
+    text: "Sinais de que planilhas, mensagens soltas e controles manuais já estão custando tempo, erro e oportunidade.",
+  },
+  {
+    title: "Como validar uma ideia de app antes de gastar muito?",
+    text: "Caminhos para testar demanda, público e funcionalidades essenciais antes de partir para um produto completo.",
+  },
+  {
+    title: "Site institucional ou landing page: qual usar?",
+    text: "Entenda quando sua empresa precisa fortalecer presença, vender uma oferta específica ou captar leads para vendas.",
+  },
+  {
+    title: "O que automatizar primeiro em uma empresa?",
+    text: "Um jeito simples de priorizar automações que reduzem retrabalho sem bagunçar a operação.",
+  },
+  {
+    title: "Como um MVP reduz risco em projetos digitais?",
+    text: "Por que começar menor pode acelerar aprendizado, proteger orçamento e revelar o que realmente precisa ser construído.",
+  },
 ];
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
@@ -155,12 +151,12 @@ export default function Home() {
       <section id="servicos" className="border-b border-gray-200 bg-white py-18 md:py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <SectionLabel>Serviços por dor do cliente</SectionLabel>
+            <SectionLabel>Serviços</SectionLabel>
             <h2 className="text-3xl font-bold tracking-tight text-gray-950 md:text-4xl">
-              O site precisa falar primeiro do problema, depois da tecnologia.
+              Escolha pelo problema que sua empresa quer resolver.
             </h2>
             <p className="mt-4 text-base leading-relaxed text-gray-600">
-              Essa é a estratégia certa para captar empresas que ainda não sabem se precisam de um site, app, sistema, automação ou MVP. A conversa começa pela dor.
+              Nem toda demanda começa com um escopo pronto. Ajudamos a transformar dores do negócio em soluções digitais úteis, viáveis e bem direcionadas.
             </p>
           </div>
 
@@ -182,12 +178,12 @@ export default function Home() {
       <section id="diagnostico" className="border-b border-gray-200 bg-gray-50 py-18 md:py-24">
         <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
           <div>
-            <SectionLabel>Landing page de conversão</SectionLabel>
+            <SectionLabel>Diagnóstico gratuito</SectionLabel>
             <h2 className="text-3xl font-bold tracking-tight text-gray-950 md:text-4xl">
-              Diagnóstico gratuito como porta de entrada comercial.
+              Descubra o melhor caminho antes de investir em desenvolvimento.
             </h2>
             <p className="mt-4 text-base leading-relaxed text-gray-600">
-              O MVP de marketing deve vender uma decisão mais segura, não “desenvolvimento” de forma genérica. A promessa central é clara: entender a solução certa antes de gastar.
+              Antes de criar um app, site, sistema ou automação, vale entender o problema, o impacto esperado e a primeira entrega que realmente faz sentido.
             </p>
             <Button className="mt-8 h-12 rounded-lg bg-[#0F4C81] px-6 text-base font-semibold text-white hover:bg-[#0a3d6b]" asChild>
               <Link href="/diagnostico">
@@ -227,18 +223,18 @@ export default function Home() {
       <section id="cases" className="border-b border-gray-200 bg-white py-18 md:py-24">
         <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-6 lg:grid-cols-[0.85fr_1.15fr] lg:px-8">
           <div>
-            <SectionLabel>Prova de capacidade</SectionLabel>
+            <SectionLabel>Case</SectionLabel>
             <h2 className="text-3xl font-bold tracking-tight text-gray-950 md:text-4xl">
-              Começar pequeno não enfraquece a marca; deixa a prova mais honesta.
+              Tecnologia sob medida para uma operação que precisa de controle e evolução.
             </h2>
           </div>
           <article className="rounded-lg border border-gray-200 bg-gray-50 p-7">
             <div className="mb-5 flex items-center gap-3 text-[#0F4C81]">
               <BadgeCheck className="h-5 w-5" />
-            <span className="text-sm font-semibold uppercase tracking-widest">ERP em desenvolvimento</span>
-          </div>
-          <h3 className="text-2xl font-bold text-gray-950">Lider Field Marketing e Serviços</h3>
-          <p className="mt-4 text-base leading-relaxed text-gray-600">
+              <span className="text-sm font-semibold uppercase tracking-widest">ERP em desenvolvimento</span>
+            </div>
+            <h3 className="text-2xl font-bold text-gray-950">Lider Field Marketing e Serviços</h3>
+            <p className="mt-4 text-base leading-relaxed text-gray-600">
               Desenvolvimento de um ERP sob medida para uma empresa de field marketing e serviços, com foco em operação, gestão de processos e centralização de informações.
             </p>
             <div className="mt-6 grid gap-3 sm:grid-cols-3">
@@ -256,22 +252,20 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
           <div className="grid gap-10 lg:grid-cols-[380px_1fr]">
             <div>
-              <SectionLabel>Conteúdo educativo</SectionLabel>
+              <SectionLabel>Conteúdos</SectionLabel>
               <h2 className="text-3xl font-bold tracking-tight text-gray-950 md:text-4xl">
-                Conteúdos curtos para transformar dúvida em lead.
+                Guias rápidos para tomar decisões digitais com mais clareza.
               </h2>
               <p className="mt-4 text-base leading-relaxed text-gray-600">
-                Cada conteúdo deve terminar convidando para o diagnóstico, criando tráfego qualificado para Google e LinkedIn.
+                Materiais objetivos para empresas que querem entender melhor quando criar, automatizar, validar ou melhorar uma solução digital.
               </p>
             </div>
             <div className="grid gap-4 sm:grid-cols-2">
-              {educationalContents.map((title) => (
-                <article key={title} className="rounded-lg border border-gray-200 bg-white p-5">
+              {educationalContents.map((item) => (
+                <article key={item.title} className="rounded-lg border border-gray-200 bg-white p-5">
                   <Lightbulb className="mb-5 h-5 w-5 text-[#0F4C81]" />
-                  <h3 className="text-base font-bold leading-snug text-gray-950">{title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-gray-600">
-                    Conteúdo objetivo com sinais práticos, exemplos e CTA para diagnóstico.
-                  </p>
+                  <h3 className="text-base font-bold leading-snug text-gray-950">{item.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-gray-600">{item.text}</p>
                 </article>
               ))}
             </div>
@@ -279,48 +273,18 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-b border-gray-200 bg-white py-18 md:py-24">
-        <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-8">
+      <section className="bg-[#0F4C81] py-18 text-white md:py-24">
+        <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-6 lg:grid-cols-[1fr_0.8fr] lg:items-center lg:px-8">
           <div>
-            <SectionLabel>Arquitetura sugerida</SectionLabel>
-            <h2 className="text-3xl font-bold tracking-tight text-gray-950 md:text-4xl">
-              Estrutura inicial enxuta, preparada para crescer.
+            <p className="text-sm font-semibold uppercase tracking-widest text-white/65">Próximo passo</p>
+            <h2 className="mt-4 max-w-3xl text-3xl font-bold tracking-tight md:text-4xl">
+              Vamos entender o que sua empresa precisa construir agora?
             </h2>
-            <p className="mt-4 text-base leading-relaxed text-gray-600">
-              Agora: Home, Serviços por dor, Diagnóstico, Cases e Conteúdos. Depois: landing pages específicas para SEO e campanhas.
+            <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/75">
+              Conte o desafio e receba uma primeira orientação sobre escopo, prioridade e tipo de solução digital mais adequada.
             </p>
           </div>
-          <div className="rounded-lg border border-gray-200 bg-gray-50 p-6">
-            <div className="grid gap-3">
-              {futurePages.map((page) => (
-                <div key={page} className="flex items-center gap-3 rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm font-semibold text-gray-700">
-                  <Blocks className="h-4 w-4 text-[#0F4C81]" />
-                  {page}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-[#0F4C81] py-18 text-white md:py-24">
-        <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
-          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-widest text-white/65">Funil comercial</p>
-              <h2 className="mt-4 text-3xl font-bold tracking-tight md:text-4xl">
-                O site passa a trabalhar para gerar confiança, conversa e proposta.
-              </h2>
-            </div>
-            <div className="grid gap-3 sm:grid-cols-2">
-              {funnelSteps.map((step, index) => (
-                <div key={step} className="rounded-lg border border-white/15 bg-white/10 px-4 py-3 text-sm font-semibold text-white">
-                  {index + 1}. {step}
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+          <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
             <Button className="h-12 rounded-lg bg-white px-6 text-base font-semibold text-[#0F4C81] hover:bg-gray-100" asChild>
               <Link href="/diagnostico">
                 Solicitar diagnóstico
