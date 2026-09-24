@@ -2,9 +2,9 @@
 
 import { Logo } from "@/shared/components/Logo/Logo";
 import { Button } from "@/shared/components/ui/button";
-import { header_routes } from "@/shared/constants/header.contansts";
+import { header_routes } from "@/shared/constants/header.constants";
 import { cn } from "@/shared/lib/utils";
-import { ArrowRightIcon, MenuIcon, XIcon } from "lucide-react";
+import { ArrowRightIcon,MenuIcon,XIcon } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";

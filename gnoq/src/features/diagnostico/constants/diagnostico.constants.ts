@@ -7,20 +7,12 @@ import {
   RocketIcon,
   SearchCheckIcon,
   ShieldCheckIcon,
-  type LucideIcon,
 } from "lucide-react";
 
-export interface DiagnosisOption {
-  title: string;
-  description: string;
-  icon: LucideIcon;
-}
-
-export interface DiagnosisStep {
-  title: string;
-  description: string;
-}
-
+import type {
+  DiagnosisOption,
+  DiagnosisStep,
+} from "../types/diagnostico.types";
 export const diagnosis_options: DiagnosisOption[] = [
   {
     title: "Site ou landing page",
@@ -44,7 +36,8 @@ export const diagnosis_options: DiagnosisOption[] = [
   },
   {
     title: "ERP ou BI",
-    description: "Para centralizar processos e transformar dados em visão gerencial.",
+    description:
+      "Para centralizar processos e transformar dados em visão gerencial.",
     icon: SearchCheckIcon,
   },
   {

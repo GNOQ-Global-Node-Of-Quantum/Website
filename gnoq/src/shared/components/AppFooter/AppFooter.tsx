@@ -1,11 +1,11 @@
 import { Logo } from "@/shared/components/Logo/Logo";
 import { Button } from "@/shared/components/ui/button";
-import { header_routes } from "@/shared/constants/header.contansts";
 import {
-  WHATSAPP_DISPLAY,
-  whatsappLink,
+WHATSAPP_DISPLAY,
+whatsappLink,
 } from "@/shared/constants/contact.constants";
-import { ArrowRightIcon, MailIcon, MessageCircleIcon } from "lucide-react";
+import { header_routes } from "@/shared/constants/header.constants";
+import { ArrowRightIcon,MailIcon,MessageCircleIcon } from "lucide-react";
 import Link from "next/link";
 
 const solutionLinks = [

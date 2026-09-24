@@ -85,7 +85,8 @@ export const home_steps: HomeStep[] = [
   },
   {
     title: "Estratégia",
-    description: "Definimos o caminho mais simples para gerar valor e aprender.",
+    description:
+      "Definimos o caminho mais simples para gerar valor e aprender.",
     icon: LightbulbIcon,
   },
   {

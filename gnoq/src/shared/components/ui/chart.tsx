@@ -327,40 +327,22 @@ function ChartLegendContent({
   )
 }
 
-function getPayloadConfigFromPayload(
+function readStringField<T extends object>(value: T, key: string): string | undefined {
+  const field = value[key as keyof T];
+  return typeof field === "string" ? field : undefined;
+}
+
+function getPayloadConfigFromPayload<T extends object>(
   config: ChartConfig,
-  payload: unknown,
-  key: string
-) {
-  if (typeof payload !== "object" || payload === null) {
-    return undefined
-  }
-
-  const payloadPayload =
-    "payload" in payload &&
-    typeof payload.payload === "object" &&
-    payload.payload !== null
-      ? payload.payload
-      : undefined
-
-  let configLabelKey: string = key
-
-  if (
-    key in payload &&
-    typeof payload[key as keyof typeof payload] === "string"
-  ) {
-    configLabelKey = payload[key as keyof typeof payload] as string
-  } else if (
-    payloadPayload &&
-    key in payloadPayload &&
-    typeof payloadPayload[key as keyof typeof payloadPayload] === "string"
-  ) {
-    configLabelKey = payloadPayload[
-      key as keyof typeof payloadPayload
-    ] as string
-  }
-
-  return configLabelKey in config ? config[configLabelKey] : config[key]
+  payload: T,
+  key: string,
+): ChartConfig[string] | undefined {
+  const nested = payload["payload" as keyof T];
+  const nestedKey = typeof nested === "object" && nested !== null
+    ? readStringField(nested, key)
+    : undefined;
+  const configKey = readStringField(payload, key) ?? nestedKey ?? key;
+  return config[configKey] ?? config[key];
 }
 
 export {
