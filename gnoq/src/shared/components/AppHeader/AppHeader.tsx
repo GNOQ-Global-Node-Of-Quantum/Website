@@ -1,8 +1,10 @@
 "use client";
 
+import { Logo } from "@/shared/components/Logo/Logo";
+import { Button } from "@/shared/components/ui/button";
 import { header_routes } from "@/shared/constants/header.contansts";
 import { cn } from "@/shared/lib/utils";
-import { MenuIcon, XIcon } from "lucide-react";
+import { ArrowRightIcon, MenuIcon, XIcon } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -19,22 +21,14 @@ export function AppHeader() {
         <Link
           href="/"
           onClick={closeMenu}
-          className="flex items-center gap-3"
+          className="flex items-center text-primary"
           aria-label="Ir para a página inicial da GNOQ"
         >
-          <span className="flex size-10 items-center justify-center rounded-xl border bg-foreground text-sm font-semibold text-background">
-            G
-          </span>
-          <span className="flex flex-col leading-none">
-            <span className="font-semibold tracking-tight">GNOQ</span>
-            <span className="mt-1 text-xs text-muted-foreground">
-              Digital studio
-            </span>
-          </span>
+          <Logo className="h-7" />
         </Link>
 
         <nav
-          className="ml-auto hidden items-center gap-1 md:flex"
+          className="ml-auto hidden items-center gap-1 lg:flex"
           aria-label="Menu principal"
         >
           {header_routes.map((route) => {
@@ -55,9 +49,19 @@ export function AppHeader() {
           })}
         </nav>
 
+        <Button
+          nativeButton={false}
+          size="sm"
+          className="ml-auto hidden lg:ml-4 lg:inline-flex"
+          render={<Link href="/diagnostico" />}
+        >
+          Solicitar diagnóstico
+          <ArrowRightIcon className="size-4" />
+        </Button>
+
         <button
           type="button"
-          className="inline-flex size-9 items-center justify-center rounded-lg border bg-background md:hidden"
+          className="ml-auto inline-flex size-9 items-center justify-center rounded-lg border bg-background lg:hidden"
           onClick={() => setIsOpen((current) => !current)}
           aria-label={isOpen ? "Fechar menu" : "Abrir menu"}
           aria-expanded={isOpen}
@@ -67,7 +71,7 @@ export function AppHeader() {
       </div>
 
       {isOpen && (
-        <div className="border-t bg-background px-6 py-4 md:hidden">
+        <div className="border-t bg-background px-6 py-4 lg:hidden">
           <nav className="mx-auto grid max-w-7xl gap-2" aria-label="Menu mobile">
             {header_routes.map((route) => {
               const isActive = pathname === route.href;
@@ -86,6 +90,14 @@ export function AppHeader() {
                 </Link>
               );
             })}
+            <Button
+              nativeButton={false}
+              className="mt-2"
+              render={<Link href="/diagnostico" onClick={closeMenu} />}
+            >
+              Solicitar diagnóstico
+              <ArrowRightIcon className="size-4" />
+            </Button>
           </nav>
         </div>
       )}

@@ -1,6 +1,11 @@
+import { Logo } from "@/shared/components/Logo/Logo";
 import { Button } from "@/shared/components/ui/button";
 import { header_routes } from "@/shared/constants/header.contansts";
-import { ArrowRightIcon } from "lucide-react";
+import {
+  WHATSAPP_DISPLAY,
+  whatsappLink,
+} from "@/shared/constants/contact.constants";
+import { ArrowRightIcon, MailIcon, MessageCircleIcon } from "lucide-react";
 import Link from "next/link";
 
 const solutionLinks = [
@@ -20,16 +25,8 @@ export function AppFooter() {
     <footer className="border-t bg-muted/30">
       <div className="mx-auto grid max-w-7xl gap-10 px-6 py-12 lg:grid-cols-[1.1fr_0.7fr_0.7fr_1fr]">
         <div className="flex flex-col gap-5">
-          <Link href="/" className="flex items-center gap-3">
-            <span className="flex size-10 items-center justify-center rounded-xl border bg-foreground text-sm font-semibold text-background">
-              G
-            </span>
-            <span className="flex flex-col leading-none">
-              <span className="font-semibold tracking-tight">GNOQ</span>
-              <span className="mt-1 text-xs text-muted-foreground">
-                Digital studio
-              </span>
-            </span>
+          <Link href="/" className="flex items-center text-primary">
+            <Logo className="h-7" />
           </Link>
 
           <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">
@@ -37,6 +34,25 @@ export function AppFooter() {
             operação, transformar dados em decisão, vender melhor ou criar novos
             produtos.
           </p>
+
+          <div className="grid gap-2 text-sm">
+            <a
+              href={whatsappLink()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
+            >
+              <MessageCircleIcon className="size-4" />
+              WhatsApp {WHATSAPP_DISPLAY}
+            </a>
+            <a
+              href="mailto:gabriel.neves@gnoq.com.br"
+              className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
+            >
+              <MailIcon className="size-4" />
+              gabriel.neves@gnoq.com.br
+            </a>
+          </div>
         </div>
 
         <div>

@@ -1,5 +1,6 @@
 import { AppHeader } from "@/shared/components/AppHeader/AppHeader";
 import { AppFooter } from "@/shared/components/AppFooter/AppFooter";
+import { WhatsAppButton } from "@/shared/components/WhatsAppButton/WhatsAppButton";
 import { cn } from "@/shared/lib/utils";
 import type { Metadata } from "next";
 import { Geist, Inter } from "next/font/google";
@@ -33,6 +34,7 @@ export default function RootLayout({
         <AppHeader />
         {children}
         <AppFooter />
+        <WhatsAppButton />
       </body>
     </html>
   );

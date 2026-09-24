@@ -1,15 +1,13 @@
+import { LeadForm } from "@/shared/components/LeadForm/LeadForm";
 import { PageHero } from "@/shared/components/PageHero/PageHero";
 import { Badge } from "@/shared/components/ui/badge";
-import { Button } from "@/shared/components/ui/button";
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
 } from "@/shared/components/ui/card";
-import { Input } from "@/shared/components/ui/input";
-import { Textarea } from "@/shared/components/ui/textarea";
-import { ArrowRightIcon, CheckIcon } from "lucide-react";
+import { CheckIcon } from "lucide-react";
 import {
   diagnosis_options,
   diagnosis_steps,
@@ -43,73 +41,28 @@ export function DiagnosticoPage() {
       />
 
       <section className="mx-auto grid max-w-7xl gap-8 px-6 py-14 lg:grid-cols-[1fr_0.85fr]">
-        <form className="rounded-2xl border p-6">
+        <div className="rounded-2xl border p-6">
           <Badge variant="outline" className="w-fit">
             Solicitação
           </Badge>
           <h2 className="mt-4 text-2xl font-semibold tracking-tight">
             Conte o cenário.
           </h2>
-          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+          <p className="mt-2 mb-6 text-sm leading-relaxed text-muted-foreground">
             Não precisa chegar com escopo pronto. O objetivo é entender o
             problema e transformar isso em um próximo passo claro.
           </p>
 
-          <div className="mt-6 grid gap-4 md:grid-cols-2">
-            <Input placeholder="Nome" aria-label="Nome" />
-            <Input placeholder="Empresa" aria-label="Empresa" />
-            <Input placeholder="E-mail" aria-label="E-mail" type="email" />
-            <Input placeholder="WhatsApp" aria-label="WhatsApp" />
-          </div>
-
-          <div className="mt-4 grid gap-4 md:grid-cols-2">
-            <Input placeholder="Prazo desejado" aria-label="Prazo desejado" />
-            <Input
-              placeholder="Orçamento estimado, se houver"
-              aria-label="Orçamento estimado"
-            />
-          </div>
-
-          <div className="mt-4">
-            <Textarea
-              placeholder="Qual problema você quer resolver?"
-              aria-label="Qual problema você quer resolver?"
-              className="min-h-32"
-            />
-          </div>
-
-          <div className="mt-6">
-            <p className="text-sm font-medium">O que você imagina precisar?</p>
-            <div className="mt-3 grid gap-3 md:grid-cols-2">
-              {diagnosis_options.map((option) => (
-                <label
-                  key={option.title}
-                  className="flex cursor-pointer gap-3 rounded-xl border p-4 transition-colors hover:bg-muted/50"
-                >
-                  <input
-                    type="checkbox"
-                    name="projectType"
-                    value={option.title}
-                    className="mt-1"
-                  />
-                  <span>
-                    <span className="block text-sm font-medium">
-                      {option.title}
-                    </span>
-                    <span className="mt-1 block text-sm leading-relaxed text-muted-foreground">
-                      {option.description}
-                    </span>
-                  </span>
-                </label>
-              ))}
-            </div>
-          </div>
-
-          <Button className="mt-6" type="submit">
-            Enviar diagnóstico
-            <ArrowRightIcon className="size-4" />
-          </Button>
-        </form>
+          <LeadForm
+            origin="diagnóstico"
+            showProjectFields
+            submitLabel="Enviar diagnóstico"
+            interests={diagnosis_options.map((option) => ({
+              title: option.title,
+              description: option.description,
+            }))}
+          />
+        </div>
 
         <aside className="grid gap-4">
           {diagnosis_trust_points.map((point) => (

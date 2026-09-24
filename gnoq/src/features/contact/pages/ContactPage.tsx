@@ -1,18 +1,13 @@
+import { LeadForm } from "@/shared/components/LeadForm/LeadForm";
 import { PageHero } from "@/shared/components/PageHero/PageHero";
 import { Badge } from "@/shared/components/ui/badge";
 import { Button } from "@/shared/components/ui/button";
-import { Input } from "@/shared/components/ui/input";
-import { Textarea } from "@/shared/components/ui/textarea";
+import {
+  WHATSAPP_DISPLAY,
+  whatsappLink,
+} from "@/shared/constants/contact.constants";
 import { ArrowRightIcon, MailIcon, MessageCircleIcon } from "lucide-react";
 import Link from "next/link";
-
-const contactReasons = [
-  "Parcerias",
-  "Projetos",
-  "Suporte",
-  "Comercial",
-  "Imprensa ou institucional",
-];
 
 export function ContactPage() {
   return (
@@ -34,52 +29,46 @@ export function ContactPage() {
       />
 
       <section className="mx-auto grid max-w-7xl gap-8 px-6 py-14 lg:grid-cols-[1fr_0.8fr]">
-        <form className="rounded-2xl border p-6">
+        <div className="rounded-2xl border p-6">
           <Badge variant="outline" className="w-fit">
             Mensagem
           </Badge>
-          <div className="mt-6 grid gap-4 md:grid-cols-2">
-            <Input placeholder="Nome" aria-label="Nome" />
-            <Input placeholder="Empresa" aria-label="Empresa" />
-            <Input placeholder="E-mail" aria-label="E-mail" type="email" />
-            <Input placeholder="WhatsApp" aria-label="WhatsApp" />
-          </div>
-
-          <div className="mt-6">
-            <p className="text-sm font-medium">Assunto</p>
-            <div className="mt-3 flex flex-wrap gap-2">
-              {contactReasons.map((reason) => (
-                <span
-                  key={reason}
-                  className="rounded-full border px-3 py-1 text-sm text-muted-foreground"
-                >
-                  {reason}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          <div className="mt-4">
-            <Textarea
-              placeholder="Como podemos ajudar?"
-              aria-label="Como podemos ajudar?"
-              className="min-h-32"
-            />
-          </div>
-
-          <Button className="mt-6" type="submit">
-            Enviar mensagem
-            <ArrowRightIcon className="size-4" />
-          </Button>
-        </form>
+          <p className="mt-4 mb-6 text-sm leading-relaxed text-muted-foreground">
+            Preencha e a GNOQ te responde. Assuntos comerciais, parcerias,
+            suporte ou mensagens institucionais.
+          </p>
+          <LeadForm origin="contato" submitLabel="Enviar mensagem" />
+        </div>
 
         <aside className="grid gap-4">
+          <div className="rounded-2xl border bg-[#25D366]/10 p-6">
+            <MessageCircleIcon className="size-5 text-[#128C4B]" />
+            <h2 className="mt-4 font-semibold">Fale agora no WhatsApp</h2>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              O jeito mais rápido de falar com a GNOQ. Respondemos direto por
+              lá — {WHATSAPP_DISPLAY}.
+            </p>
+            <Button
+              nativeButton={false}
+              className="mt-5 bg-[#25D366] text-white hover:bg-[#1FAE55]"
+              render={
+                <a
+                  href={whatsappLink()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                />
+              }
+            >
+              <MessageCircleIcon className="size-4" />
+              Abrir conversa
+            </Button>
+          </div>
           <div className="rounded-2xl border bg-muted/30 p-6">
-            <MessageCircleIcon className="size-5" />
+            <ArrowRightIcon className="size-5" />
             <h2 className="mt-4 font-semibold">Quer começar um projeto?</h2>
             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-              Para projetos de site, app, sistema, automação, jogo ou MVP, o
-              diagnóstico ajuda a organizar melhor o pedido.
+              Para site, app, sistema, automação, jogo ou MVP, o diagnóstico
+              ajuda a organizar melhor o pedido.
             </p>
             <Button
               nativeButton={false}
@@ -92,10 +81,9 @@ export function ContactPage() {
           </div>
           <div className="rounded-2xl border p-6">
             <MailIcon className="size-5" />
-            <h2 className="mt-4 font-semibold">Contato institucional</h2>
+            <h2 className="mt-4 font-semibold">E-mail</h2>
             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-              Use o formulário para assuntos comerciais, parcerias, suporte ou
-              mensagens institucionais.
+              gabriel.neves@gnoq.com.br
             </p>
           </div>
         </aside>
