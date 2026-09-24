@@ -7,7 +7,6 @@ import {
   Globe2Icon,
   LightbulbIcon,
   MapPinIcon,
-  type LucideIcon,
   RocketIcon,
   SearchCheckIcon,
   ShieldCheckIcon,
@@ -15,37 +14,12 @@ import {
   WorkflowIcon,
 } from "lucide-react";
 
-export interface ServiceCard {
-  titulo: string;
-  oferta: string;
-  dor: string;
-  texto: string;
-  idealPara: string;
-  entregas: string[];
-  resultado: string;
-  cta: string;
-  icon: LucideIcon;
-  accentClassName: string;
-}
-
-export interface ServiceMatch {
-  pensamento: string;
-  solucao: string;
-}
-
-export interface ProcessStep {
-  etapa: string;
-  titulo: string;
-  descricao: string;
-  icon: LucideIcon;
-}
-
-export interface ProofPoint {
-  titulo: string;
-  descricao: string;
-  icon: LucideIcon;
-}
-
+import type {
+  ProcessStep,
+  ProofPoint,
+  ServiceCard,
+  ServiceMatch,
+} from "../types/services.types";
 export const service_cards: ServiceCard[] = [
   {
     titulo: "Vender melhor online",
@@ -53,7 +27,8 @@ export const service_cards: ServiceCard[] = [
     dor: "Tenho presença digital, mas ela não gera contatos, propostas ou vendas.",
     texto:
       "Criamos experiências digitais com mensagem clara, navegação objetiva e pontos de conversão pensados para transformar visitantes em oportunidades.",
-    idealPara: "Empresas que precisam ser encontradas, gerar confiança e captar leads.",
+    idealPara:
+      "Empresas que precisam ser encontradas, gerar confiança e captar leads.",
     entregas: [
       "Sites institucionais",
       "Landing pages",
@@ -91,7 +66,8 @@ export const service_cards: ServiceCard[] = [
     dor: "Tenho uma ideia de produto, mas preciso transformar isso em uma solução real.",
     texto:
       "Ajudamos a estruturar, projetar e desenvolver produtos digitais sob medida, conectando estratégia, experiência e tecnologia.",
-    idealPara: "Empresas e empreendedores criando novos canais, produtos ou plataformas.",
+    idealPara:
+      "Empresas e empreendedores criando novos canais, produtos ou plataformas.",
     entregas: ["Apps", "SaaS", "Plataformas web", "Áreas administrativas"],
     resultado: "Um produto digital com base técnica e visão de negócio.",
     cta: "Criar produto",
@@ -122,7 +98,8 @@ export const service_cards: ServiceCard[] = [
     dor: "Preciso criar uma experiência mais envolvente para usuários, equipes ou público.",
     texto:
       "Criamos jogos e interações digitais para treinamento, campanhas, educação, eventos e experiências de marca.",
-    idealPara: "Marcas, escolas, eventos e empresas que precisam aumentar atenção e participação.",
+    idealPara:
+      "Marcas, escolas, eventos e empresas que precisam aumentar atenção e participação.",
     entregas: [
       "Jogos web",
       "Experiências interativas",

@@ -1,24 +1,4 @@
-interface TeamMemberLinks {
-  linkedin?: string;
-  github?: string;
-}
-
-interface TeamMember {
-  foto?: string;
-  id: string;
-  nome: string;
-  papel: string;
-  especialidade: string;
-  bio: string;
-  links: TeamMemberLinks;
-}
-
-interface TeamArea {
-  title: string;
-  description: string;
-  memberIds: string[];
-}
-
+import type { TeamArea, TeamMember } from "../types/team.types";
 export const equipe: TeamMember[] = [
   {
     id: "gabriel-neves",

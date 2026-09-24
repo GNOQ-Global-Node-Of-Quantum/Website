@@ -1,36 +1,37 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# GNOQ Website
 
-## Getting Started
+Site institucional em Next.js, React e TypeScript, organizado em `src/app`, `src/shared` e `src/features`.
 
-First, run the development server:
+## Desenvolvimento
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm ci
+npm run dev -- --port 3001
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abra [localhost:3001](http://localhost:3001). O projeto usa fontes do sistema e os arquivos oficiais da marca em `public/brand`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Estrutura
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `app`: rotas, metadados e layout raiz.
+- `shared`: componentes reutilizáveis, navegação, logo, estilos base e utilitários.
+- `features`: páginas, componentes, dados, tipos e comportamento por área de negócio.
 
-## Learn More
+As convenções e dependências permitidas estão em [docs/arquitetura.md](docs/arquitetura.md).
 
-To learn more about Next.js, take a look at the following resources:
+## Validação
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run typecheck
+npm run check:architecture
+npm test
+npm run build
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Os testes usam o runner nativo do Node e exigem Node 22.6 ou superior. Dados externos são validados com Zod; o verificador de arquitetura bloqueia tipos explícitos irrestritos e dependências invertidas entre camadas.
 
-## Deploy on Vercel
+## Estado da reformulação
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+A manutenção foi publicada na `main`. A nova home é desenvolvida separadamente em `codex/nova-home-gnoq`. O proxy mantém as páginas antigas e a API de leads indisponíveis enquanto a revisão continua. A prévia da manutenção fica em `/manutencao`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+A implementação de leads usa variáveis locais de ambiente para o Resend. Credenciais não devem ser versionadas.
